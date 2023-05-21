@@ -1,0 +1,10 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogPost>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@if (Model.Tags.Any())
+{
+    @foreach (var tag in Model.Tags)
+    {
+        <text>, <a href="?t=@tag">@tag</a></text>
+    }
+}

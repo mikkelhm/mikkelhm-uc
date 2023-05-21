@@ -1,0 +1,49 @@
+{
+  "Name": "Website",
+  "Alias": "website",
+  "DefaultTemplate": null,
+  "AllowedTemplates": [],
+  "HistoryCleanup": {
+    "preventCleanup": false,
+    "keepAllVersionsNewerThanDays": null,
+    "keepLatestVersionPerDayForDays": null
+  },
+  "Icon": "icon-globe-asia color-black",
+  "Thumbnail": "folder.png",
+  "Description": null,
+  "IsContainer": false,
+  "Permissions": {
+    "AllowVaryingByCulture": false,
+    "AllowVaryingBySegment": false,
+    "AllowedAtRoot": true,
+    "IsElementType": false,
+    "AllowedChildContentTypes": [
+      "umb://document-type/b36551919b1345608bfb3daa8967a11a",
+      "umb://document-type/77199092b3844af2ac08b5f40d00638a"
+    ]
+  },
+  "Parent": "umb://document-type-container/b64743a42354412daa23b3cb89b6535b",
+  "CompositionContentTypes": [],
+  "PropertyGroups": [],
+  "PropertyTypes": [],
+  "Udi": "umb://document-type/79f8c2bf361c4c3bad27e700b49d9d61",
+  "Dependencies": [
+    {
+      "Udi": "umb://document-type-container/b64743a42354412daa23b3cb89b6535b",
+      "Ordering": true,
+      "Mode": 0
+    },
+    {
+      "Udi": "umb://document-type/77199092b3844af2ac08b5f40d00638a",
+      "Ordering": false,
+      "Mode": 0
+    },
+    {
+      "Udi": "umb://document-type/b36551919b1345608bfb3daa8967a11a",
+      "Ordering": false,
+      "Mode": 0
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
+  "__version": "11.0.2"
+}

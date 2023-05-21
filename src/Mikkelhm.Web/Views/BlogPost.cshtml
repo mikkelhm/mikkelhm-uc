@@ -1,0 +1,31 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogPost>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "BlogMaster.cshtml";
+}
+
+<article class="post tag-ghost-tag">
+
+    <span class="post-meta">
+        <a href="https://www.twitter.com/mikkelhm" target="_blank" title="Mikkelhm on Twitter">Mikkel Holck Madsen</a>
+        <time datetime="@Model.PublishedDate.ToString("yyyy-MM-dd")">@Model.PublishedDate.ToString("dddd, MMMM dd, yyyy")</time>
+        @await Html.PartialAsync("Blog/PostTags", Model)
+    </span>
+
+    <h1 class="post-title">@Model.Name</h1>
+
+    <section class="post-content">
+        @Model.Body
+        @await Html.PartialAsync("Blog/References", Model)
+
+    </section>
+
+    <footer class="post-footer">
+        @if (Model.EnableComments)
+        {
+            @await Html.PartialAsync("Blog/CommentsDisqus", Model)
+        }
+    </footer>
+
+</article>

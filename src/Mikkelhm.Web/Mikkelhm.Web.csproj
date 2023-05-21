@@ -22,6 +22,21 @@
     <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="68.2.0.9" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Asta\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="app_plugins\astaphotogallerylistview\listview.controller.js" />
+    <None Include="app_plugins\astaphotogallerylistview\package.manifest" />
+    <None Include="App_Plugins\AstaPhotoGalleryListView\listview.css" />
+    <None Include="App_Plugins\AstaPhotoGalleryListView\listview.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mikkelhm.Core\Mikkelhm.Core.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->
     <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
@@ -32,6 +47,5 @@
     <RazorCompileOnBuild>false</RazorCompileOnBuild>
     <RazorCompileOnPublish>false</RazorCompileOnPublish>
   </PropertyGroup>
-
   
 </Project>

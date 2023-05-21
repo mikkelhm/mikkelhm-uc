@@ -1,0 +1,92 @@
+{
+  "Name": "AstaPhoto",
+  "Alias": "astaPhoto",
+  "DefaultTemplate": null,
+  "AllowedTemplates": [],
+  "HistoryCleanup": {
+    "preventCleanup": false,
+    "keepAllVersionsNewerThanDays": null,
+    "keepLatestVersionPerDayForDays": null
+  },
+  "Icon": "icon-item-arrangement",
+  "Thumbnail": "folder.png",
+  "Description": null,
+  "IsContainer": false,
+  "Permissions": {
+    "AllowVaryingByCulture": false,
+    "AllowVaryingBySegment": false,
+    "AllowedAtRoot": false,
+    "IsElementType": false,
+    "AllowedChildContentTypes": []
+  },
+  "Parent": "umb://document-type-container/61464945308042199a697c71009c7941",
+  "CompositionContentTypes": [],
+  "PropertyGroups": [
+    {
+      "Key": "b7aa6ca6-5c64-4547-a6cd-d20e78d75075",
+      "Name": "Content",
+      "SortOrder": 0,
+      "Type": 0,
+      "Alias": "content",
+      "PropertyTypes": [
+        {
+          "Key": "0715b1fe-c2f8-4449-b8ff-81ac62160764",
+          "Alias": "title",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "Description": null,
+          "Mandatory": false,
+          "MandatoryMessage": null,
+          "Name": "Title",
+          "SortOrder": 0,
+          "Validation": null,
+          "ValidationMessage": null,
+          "VariesByCulture": false,
+          "VariesBySegment": false,
+          "LabelOnTop": false,
+          "MemberCanEdit": false,
+          "ViewOnProfile": false,
+          "IsSensitive": false
+        },
+        {
+          "Key": "931bf4ee-8fcb-4a9e-8192-5fc1c2c0ecc6",
+          "Alias": "photo",
+          "DataType": "umb://data-type/265ba68c5ab1491a918edab269e7334e",
+          "Description": null,
+          "Mandatory": false,
+          "MandatoryMessage": null,
+          "Name": "Photo",
+          "SortOrder": 1,
+          "Validation": null,
+          "ValidationMessage": null,
+          "VariesByCulture": false,
+          "VariesBySegment": false,
+          "LabelOnTop": false,
+          "MemberCanEdit": false,
+          "ViewOnProfile": false,
+          "IsSensitive": false
+        }
+      ]
+    }
+  ],
+  "PropertyTypes": [],
+  "Udi": "umb://document-type/cf4a5f8bb08d4a9898d69afa4448ac08",
+  "Dependencies": [
+    {
+      "Udi": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+      "Ordering": true,
+      "Mode": 0
+    },
+    {
+      "Udi": "umb://data-type/265ba68c5ab1491a918edab269e7334e",
+      "Ordering": true,
+      "Mode": 0
+    },
+    {
+      "Udi": "umb://document-type-container/61464945308042199a697c71009c7941",
+      "Ordering": true,
+      "Mode": 0
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
+  "__version": "11.0.2"
+}
