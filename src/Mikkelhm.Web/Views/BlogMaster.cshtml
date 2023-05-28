@@ -3,6 +3,17 @@
 @{
     Layout = null;
     var blogSettings = Model.AncestorOrSelf("blogHome");
+
+    var title = Model.Name;
+    if(Model.HasValue("metaTitle"))
+    {
+        title = Model.Value("metaTitle").ToString();
+    }
+    var description = Model.Name;
+    if (Model.HasValue("metaDescription"))
+    {
+        title = Model.Value("metaDescription").ToString();
+    }
 }
 <!DOCTYPE html>
 <html>
@@ -11,7 +22,8 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>@Model.Name</title>
+    <title>@title</title>
+    <meta name="description" content="@description" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
