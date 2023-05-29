@@ -8,7 +8,7 @@
         @if (Model.Value("blogSidebarLogo") != null)
         {
             <a href="@Model.Url()">
-                <img id="blog" class="logo" src="@Model.BlogSidebarLogo.MediaUrl()">
+                <img id="blog" class="logo" src="@Model.BlogSidebarLogo.MediaUrl()" alt="Mikkelhm Blog logo">
             </a>
         }
 

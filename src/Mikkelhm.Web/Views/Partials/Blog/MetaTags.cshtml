@@ -1,0 +1,51 @@
+﻿@using Umbraco.Cms.Core.Models;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var title = Model.Name;
+    if(Model.HasValue("metaTitle"))
+    {
+        title = Model.Value("metaTitle").ToString();
+    }
+    var description = Model.Name;
+    if (Model.HasValue("metaDescription"))
+    {
+        description = Model.Value("metaDescription").ToString();
+    }
+    var openGraphTitle = title;
+    if(Model.HasValue("openGraphTitle"))
+    {
+        openGraphTitle = Model.Value("openGraphTitle").ToString();
+    }
+    var openGraphDescription = description;
+    if(Model.HasValue("openGraphDescription"))
+    {
+        openGraphDescription = Model.Value("openGraphDescription").ToString();
+    }
+    var openGraphImage = "";
+    if(Model.HasValue("openGraphImage"))
+    {
+        openGraphImage = Model.Value<MediaWithCrops>("openGraphImage").GetCropUrl(400, 100, urlMode: UrlMode.Absolute);
+    }
+    var openGraphType = "website";
+    if(Model.IsDocumentType("blogPost"))
+    {
+        openGraphType = "article";
+    }
+}
+@Model.Value("openGraphImage")
+<title>@title</title>
+<meta name="description" content="@description" />
+<meta property="og:title" content="@openGraphTitle" />
+<meta property="og:description" content="@openGraphDescription" />
+<meta property="og:url" content="@Model.Url(mode:UrlMode.Absolute)" />
+<meta property="og:type" content="@openGraphType" />
+@if(string.IsNullOrEmpty(openGraphImage) == false)
+{
+    <meta property="og:image" content="@openGraphImage" />
+}
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name=”robots” content="index, follow">
