@@ -26,7 +26,7 @@
     var openGraphImage = "";
     if(Model.HasValue("openGraphImage"))
     {
-        openGraphImage = Model.Value<MediaWithCrops>("openGraphImage").GetCropUrl(400, 100, urlMode: UrlMode.Absolute);
+        openGraphImage = Model.Value<MediaWithCrops>("openGraphImage").GetCropUrl(400, 400, urlMode: UrlMode.Absolute);
     }
     var openGraphType = "website";
     if(Model.IsDocumentType("blogPost"))
