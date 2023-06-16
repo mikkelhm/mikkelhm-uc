@@ -3,26 +3,11 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
-    var title = Model.Name;
-    if(Model.HasValue("metaTitle"))
-    {
-        title = Model.Value("metaTitle").ToString();
-    }
-    var description = Model.Name;
-    if (Model.HasValue("metaDescription"))
-    {
-        description = Model.Value("metaDescription").ToString();
-    }
-    var openGraphTitle = title;
-    if(Model.HasValue("openGraphTitle"))
-    {
-        openGraphTitle = Model.Value("openGraphTitle").ToString();
-    }
-    var openGraphDescription = description;
-    if(Model.HasValue("openGraphDescription"))
-    {
-        openGraphDescription = Model.Value("openGraphDescription").ToString();
-    }
+    var title = Model.Value("metaTitle", fallback: Fallback.ToDefaultValue, defaultValue: Model.Name);
+    var description = Model.Value("metaDescription", fallback: Fallback.ToDefaultValue, defaultValue: Model.Name);
+    var openGraphTitle = Model.Value("openGraphTitle", fallback: Fallback.ToDefaultValue, defaultValue: title);
+    var openGraphDescription = Model.Value("openGraphDescription", fallback: Fallback.ToDefaultValue, defaultValue: description);
+
     var openGraphImage = "";
     if(Model.HasValue("openGraphImage"))
     {
@@ -44,6 +29,9 @@
 {
     <meta property="og:image" content="@openGraphImage" />
 }
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@@mikkelhm" />
+<meta name="twitter:creator" content="@@mikkelhm" />
 <meta name="HandheldFriendly" content="True" />
 <meta name="MobileOptimized" content="320" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />

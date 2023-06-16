@@ -1,4 +1,24 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@using Mikkelhm.Core.Frontend;
+@using Mikkelhm.Core.Frontend.DisplayModels;
+@using Umbraco.Cms.Core.PublishedCache;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogHome>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inject ITagQuery _tagQuery;
+@{
+    var allTags = _tagQuery.GetAllContentTags("Blog");
+    var grouped = allTags.Select(x => new WeigthedTag(x.Text, _tagQuery.GetContentByTag(x.Text, "Blog").Count())).ToList();
+    var rnd = new Random();
+    foreach(var tag in grouped)
+    {
+        tag.SetWeight(HtmlHelperExtensions.GetTagWeight(tag.Count, 5, grouped.Max(x => x.Count)));
+    }
+}
 <div class="tagcloud">
-    Tags are comming @*@Html.TagCloud(tagModel, 5, 20)*@
+    <ul>
+    @foreach (var tag in grouped.OrderByDescending(x => x.Count).Take(20).OrderBy(_ => rnd.Next()))
+    {
+            <li class="tag-cloud-@tag.Weight"><a href="@tag.Url" title="@tag.Tag">@tag.Tag</a></li>
+    }
+    </ul>
 </div>
