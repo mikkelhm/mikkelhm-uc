@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Umbraco.Cloud.Cms.PublicAccess" Version="11.0.0" />
-    <PackageReference Include="Umbraco.Cloud.Identity.Cms" Version="11.0.44" />
+    <PackageReference Include="Umbraco.Cloud.Identity.Cms" Version="11.0.47" />
     <PackageReference Include="Umbraco.Cloud.StorageProviders.AzureBlob" Version="11.0.0" />
     <PackageReference Include="Umbraco.Cms" Version="11.4.0" />
     <PackageReference Include="Umbraco.Deploy.Cloud" Version="11.1.2" />
