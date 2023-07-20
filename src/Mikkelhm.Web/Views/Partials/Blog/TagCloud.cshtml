@@ -1,5 +1,6 @@
 ﻿@using Mikkelhm.Core.Frontend;
 @using Mikkelhm.Core.Frontend.DisplayModels;
+@using System.Web;
 @using Umbraco.Cms.Core.PublishedCache;
 @using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogHome>
@@ -18,7 +19,7 @@
     <ul>
     @foreach (var tag in grouped.OrderByDescending(x => x.Count).Take(20).OrderBy(_ => rnd.Next()))
     {
-            <li class="tag-cloud-@tag.Weight"><a href="@tag.Url" title="@tag.Tag">@tag.Tag</a></li>
+            <li class="tag-cloud-@tag.Weight"><a href="@Model.Url()?t=@HttpUtility.UrlEncode(tag.Tag)" title="@tag.Tag">@tag.Tag</a></li>
     }
     </ul>
 </div>

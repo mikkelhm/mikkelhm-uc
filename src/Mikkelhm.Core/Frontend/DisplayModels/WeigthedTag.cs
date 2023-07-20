@@ -7,7 +7,6 @@ namespace Mikkelhm.Core.Frontend.DisplayModels
         public string Tag { get; set; }
         public int Count { get; set; }
         public int Weight { get; set; }
-        public string Url => PathString.FromUriComponent($"/tags/{Tag.ToLowerInvariant().Replace(" ", "-")}");
 
         public WeigthedTag(string tag, int count)
         {

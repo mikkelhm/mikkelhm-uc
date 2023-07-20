@@ -1,9 +1,13 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogHome>
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
     Layout = "BlogMaster.cshtml";
     var children = Model.Children<ContentModels.BlogPostRepository>().First().Children<ContentModels.BlogPost>();
+    var filter = HttpContextAccessor.HttpContext.Request.Query["t"];
+    if(!string.IsNullOrWhiteSpace(filter))
+        children = children.Where(x => x.Tags == null || x.Tags.Any(y => y == filter));
 }
 
 <main role="main">
