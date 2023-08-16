@@ -6,6 +6,12 @@
       "Id": "a169cf34-a4f6-4879-9456-480b71f554c7",
       "Workspaces": [
         {
+          "Id": "30382c38-0f49-4af9-9622-da38d39ceec5",
+          "Name": "Development",
+          "Type": "development",
+          "Url": "https://dev-mikkelhm.euwest01.umbraco.io"
+        },
+        {
           "Id": "3f5df02b-c6ee-40d6-8b5e-25182d038284",
           "Name": "Live",
           "Type": "live",
