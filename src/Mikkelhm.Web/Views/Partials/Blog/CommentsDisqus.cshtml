@@ -13,7 +13,7 @@
         
         var disqus_config = function () {
             this.page.url = '@Model.Url()';
-            this.page.identifier = '@blogSettings.Value("DisqusIdentifier")';
+            this.page.identifier = '@Model.Key';
         };
         (function () { // DON'T EDIT BELOW THIS LINE
             var d = document, s = d.createElement('script');
