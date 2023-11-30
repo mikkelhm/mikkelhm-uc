@@ -1,0 +1,20 @@
+{
+  "Name": "SEO section - Open graph image - Media Picker",
+  "Alias": "",
+  "EditorAlias": "Umbraco.MediaPicker3",
+  "DatabaseType": 0,
+  "Configuration": {
+    "filter": "Image",
+    "multiple": false,
+    "validationLimit": {},
+    "startNodeId": "umb://media/12164ae9d414485eb8d63c197bceb73d",
+    "enableLocalFocalPoint": false,
+    "crops": [],
+    "ignoreUserStartNodes": false
+  },
+  "Parent": null,
+  "Udi": "umb://data-type/159ea2ee26334d2e8fd188c634159f70",
+  "Dependencies": [],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
+  "__version": "12.0.2"
+}

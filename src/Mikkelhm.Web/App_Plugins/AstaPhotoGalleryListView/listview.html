@@ -1,0 +1,22 @@
+﻿<div ng-controller="My.ListView.Layout.AstaPhotoGalleryListViewController as vm"
+     ng-if="items"
+     class="asta-photos-layout__cards">
+
+    <div class="asta-photos-layout__card"
+         ng-repeat="item in items"
+         ng-class="{'-selected':item.selected}"
+         ng-click="vm.selectItem(item, $event, $index)"
+         ng-style="{'background-image': 'url(' + item.imageThumbnail + ')'}">
+
+        <div class="asta-photos-layout__overlay">
+            <div class="asta-photos-layout__released">{{ item.released }}</div>
+            <div class="asta-photos-layout__artist">{{ item.artist }}</div>
+            <div class="asta-photos-layout__name">{{ item.name }}</div>
+            <div class="asta-photos-layout__genre">{{ item.genre }}</div>
+        </div>
+
+        <div class="asta-photos-layout__button" ng-click="vm.clickItem(item)">View item</div>
+
+    </div>
+
+</div>

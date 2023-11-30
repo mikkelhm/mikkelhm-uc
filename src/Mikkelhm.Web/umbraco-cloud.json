@@ -1,0 +1,26 @@
+{
+  "Deploy": {
+    "Project": {
+      "Name": "mikkelhm",
+      "Alias": "mikkelhm",
+      "Id": "a169cf34-a4f6-4879-9456-480b71f554c7",
+      "Workspaces": [
+        {
+          "Id": "3f5df02b-c6ee-40d6-8b5e-25182d038284",
+          "Name": "Live",
+          "Type": "live",
+          "Url": "https://mikkelhm.euwest01.umbraco.io"
+        }
+      ]
+    },
+    "Settings": {
+      "ApiKey": "6FCD91C04EF4B05AF04E0E9C6FB016CF21A2D123"
+    }
+  },
+  "Identity": {
+    "ClientId": "0297c0f6-83ad-4481-9ae2-07a3f5475333",
+    "ClientSecret": "Q5~T526ixOHlj47lg7Mu7_.zN1fK.7ua.9",
+    "EnvironmentId": "3f5df02b-c6ee-40d6-8b5e-25182d038284",
+    "LocalLoginRedirectUri": "https://redirect.identity.umbraco.com"
+  }
+}

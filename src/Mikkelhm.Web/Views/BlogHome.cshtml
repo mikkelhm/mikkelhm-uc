@@ -1,0 +1,48 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogHome>
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "BlogMaster.cshtml";
+    var children = Model.Children<ContentModels.BlogPostRepository>().First().Children<ContentModels.BlogPost>();
+    var filter = HttpContextAccessor.HttpContext.Request.Query["t"];
+    if(!string.IsNullOrWhiteSpace(filter))
+        children = children.Where(x => x.Tags == null || x.Tags.Any(y => y == filter));
+}
+
+<main role="main">
+
+    @if (!children.Any())
+    {
+        <article>No blog posts found</article>
+    }
+    else
+    {
+        foreach (var post in children.OrderByDescending(x => x.PublishedDate))
+        {
+            <article class="post tag-ghost-tag">
+                <header class="post-header">
+                    <span class="post-meta">
+                        <time datetime="@post.PublishedDate.ToString("yyyy-MM-dd")">
+                            @post.PublishedDate.ToString("dddd, MMMM dd, yyyy")
+                        </time>
+                        @await Html.PartialAsync("Blog/PostTags", post)
+                    </span>
+
+                    <h2 class="post-title"><a href="@post.Url()">@post.Name</a></h2>
+
+                </header>
+                <section class="post-excerpt">
+                    <p>@post.Excerpt&hellip;</p>
+                </section>
+            </article>
+        }
+
+        @await Html.PartialAsync("Blog/Pager", children)
+    }
+
+</main>
+<div>
+    <h1>Headers</h1>
+    @HttpContextAccessor.HttpContext.Request.Headers["UC-ipcountry"]
+</div>

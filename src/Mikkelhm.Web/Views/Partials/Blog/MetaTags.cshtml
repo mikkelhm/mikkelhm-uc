@@ -1,0 +1,38 @@
+﻿@using Umbraco.Cms.Core.Models;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var title = Model.Value("metaTitle", fallback: Fallback.ToDefaultValue, defaultValue: Model.Name);
+    var description = Model.Value("metaDescription", fallback: Fallback.ToDefaultValue, defaultValue: Model.Name);
+    var openGraphTitle = Model.Value("openGraphTitle", fallback: Fallback.ToDefaultValue, defaultValue: title);
+    var openGraphDescription = Model.Value("openGraphDescription", fallback: Fallback.ToDefaultValue, defaultValue: description);
+
+    var openGraphImage = "";
+    if(Model.HasValue("openGraphImage"))
+    {
+        openGraphImage = Model.Value<MediaWithCrops>("openGraphImage").GetCropUrl(400, 400, urlMode: UrlMode.Absolute);
+    }
+    var openGraphType = "website";
+    if(Model.IsDocumentType("blogPost"))
+    {
+        openGraphType = "article";
+    }
+}
+<title>@title</title>
+<meta name="description" content="@description" />
+<meta property="og:title" content="@openGraphTitle" />
+<meta property="og:description" content="@openGraphDescription" />
+<meta property="og:url" content="@Model.Url(mode:UrlMode.Absolute)" />
+<meta property="og:type" content="@openGraphType" />
+@if(string.IsNullOrEmpty(openGraphImage) == false)
+{
+    <meta property="og:image" content="@openGraphImage" />
+}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@@mikkelhm" />
+<meta name="twitter:creator" content="@@mikkelhm" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name=”robots” content="index, follow">

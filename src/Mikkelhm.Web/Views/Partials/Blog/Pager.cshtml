@@ -1,0 +1,38 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@model IEnumerable<ContentModels.BlogPost>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var postPrPage = 10;
+    var totalPosts = Model.Count();
+    var totalPages = totalPosts / postPrPage;
+    var currentPageStr = HttpContextAccessor.HttpContext.Request.Query["p"];
+    if (string.IsNullOrEmpty(currentPageStr))
+    {
+        currentPageStr = "1";
+    };
+    var currentPage = int.Parse(currentPageStr);
+    var nextPage = currentPage + 1;
+    var prevPage = currentPage - 1;
+    var hasPrevPage = prevPage > 0;
+    var hasNextPage = nextPage <= totalPages;
+}
+@if (hasPrevPage || hasPrevPage)
+{
+    <nav class="pagination" role="pagination">
+        @if (hasPrevPage)
+        {
+            <a class="newer-posts" href="?p=@prevPage">
+                <i class="fa fa-chevron-circle-left"></i> Newer
+            </a>
+        }
+        <span class="page-number">Page @(currentPage + 1) of @totalPages</span>
+        @if (hasNextPage)
+        {
+            <a class="older-posts" href="?p=@nextPage">
+                Older <i class="fa fa-chevron-circle-right"></i>
+            </a>
+        }
+    </nav>
+}

@@ -1,0 +1,48 @@
+name: 'Deploy'
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Restore dependencies
+      run: dotnet restore "src\Mikkelhm.sln"
+    - name: Build
+      run: dotnet build "src\Mikkelhm.sln" --no-restore
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        path: 'github-repo'
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: 'Clone Umbraco Cloud Repository'
+      shell: bash
+      run: |
+        cd ${{ env.GITHUB_WORKSPACE }}
+        git config --global user.email "mikkel@h-madsen.dk"
+        git config --global user.name "Mikkelhm"
+        git clone https://${{ secrets.UMBRACO_CLOUD_GIT_USERNAME }}:${{ secrets.UMBRACO_CLOUD_GIT_PASSWORD }}@${{ secrets.UMBRACO_CLOUD_GIT_URL }} ${{ env.GITHUB_WORKSPACE }}\umbraco-cloud
+
+        cd ${{ env.GITHUB_WORKSPACE }}\umbraco-cloud
+        ls
+        rm -vr !(".git")
+        cp -rf ${{ env.GITHUB_WORKSPACE }}\github-repo\* ${{ env.GITHUB_WORKSPACE }}\umbraco-cloud\
+        ls
+        git add -A
+        git commit -m "Update from GitHub Actions"
+        git push -u origin master

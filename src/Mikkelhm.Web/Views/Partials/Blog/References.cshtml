@@ -1,0 +1,13 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogPost>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@if (Model.References.Any())
+{
+    <h4>References</h4>
+    <ul>
+        @foreach (var link in Model.References)
+        {
+            <li><a href="@link.Url" title="@link.Name" target="@link.Target">@(string.IsNullOrWhiteSpace(link.Name) ? link.Url : link.Name)</a></li>
+        }
+    </ul>
+}

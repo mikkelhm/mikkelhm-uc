@@ -1,0 +1,39 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = null;
+    var blogSettings = Model.AncestorOrSelf("blogHome");
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    @await Html.PartialAsync("Blog/MetaTags", Model)
+    <link rel="stylesheet" href="/blog/assets/css/normalize.css" />
+    <link rel="stylesheet" href="/blog/assets/css/site.css" />
+    <link rel="stylesheet" href="/blog/assets/css/prism.css" />
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700,300,900" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/blog/assets/js/prism.js"></script>
+    @RenderSection("Header", false)
+</head>
+<body class="@ViewBag.CssBodyClass">
+    @await Html.PartialAsync("Blog/Sidebar", blogSettings)
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X013J49T3E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-X013J49T3E');
+    </script>
+</body>
+</html>

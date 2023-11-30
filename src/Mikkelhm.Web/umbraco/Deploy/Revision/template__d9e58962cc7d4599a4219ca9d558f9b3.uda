@@ -1,0 +1,16 @@
+{
+  "Name": "Asta home",
+  "Alias": "AstaHome",
+  "File": "umb://template-file/AstaHome.cshtml",
+  "Master": null,
+  "Udi": "umb://template/d9e58962cc7d4599a4219ca9d558f9b3",
+  "Dependencies": [
+    {
+      "Udi": "umb://template-file/AstaHome.cshtml",
+      "Ordering": true,
+      "Mode": 0
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.TemplateArtifact",
+  "__version": "12.0.2"
+}

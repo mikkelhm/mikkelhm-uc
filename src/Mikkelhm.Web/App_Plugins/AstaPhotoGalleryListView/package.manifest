@@ -1,0 +1,8 @@
+{
+    javascript: [
+        '~/App_Plugins/AstaPhotoGalleryListView/listview.controller.js'
+    ],
+    css: [
+        '~/App_Plugins/AstaPhotoGalleryListView/listview.css'
+    ]
+}
