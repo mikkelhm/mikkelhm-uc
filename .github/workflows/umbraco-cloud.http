@@ -1,0 +1,3 @@
+GET https://api.cloud.umbraco.com/v1/projects//deployments?skip=0&take=1
+Content-Type: application/json
+Umbraco-Cloud-Api-Key: 
