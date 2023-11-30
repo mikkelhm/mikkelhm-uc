@@ -7,9 +7,12 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+env:
+  projectId: ${{ vars.UMBRACO_CLOUD_PROJECT_ID }}
+  umbracoCloudApiKey: ${{ secrets.UMBRACO_CLOUD_CICD_API_KEY }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,3 +28,29 @@ jobs:
       run: dotnet restore "src\Mikkelhm.sln"
     - name: Build
       run: dotnet build "src\Mikkelhm.sln" --no-restore
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create Deployment Meta
+        id: deployment-meta
+        run: $GITHUB_WORKSPACE/.github/workflows/scripts/create_deployment.sh $projectId $umbracoCloudApiKey "Run number ${{github.run_number}}"
+        shell: bash
+
+      - name: Zip Source Code
+        run: zip -r sources.zip . -x ".git/*" ".github/*" "src/UmbracoProject/bin/*" "src/UmbracoProject/obj/*" "node_modules/*"
+        shell: bash
+
+      - name: Post Zipped Artifact
+        run: $GITHUB_WORKSPACE/.github/workflows/scripts/upload_package.sh $projectId ${{ steps.deployment-meta.outputs.DEPLOYMENT_ID }} $umbracoCloudApiKey $GITHUB_WORKSPACE/sources.zip
+        shell: bash
+
+      - name: Request Start Deployment
+        run: $GITHUB_WORKSPACE/.github/workflows/scripts/start_deployment.sh $projectId ${{ steps.deployment-meta.outputs.DEPLOYMENT_ID }} $umbracoCloudApiKey
+        shell: bash
+
+      - name: Wait for deployment completed
+        run: $GITHUB_WORKSPACE/.github/workflows/scripts/get_deployment_status.sh $projectId ${{ steps.deployment-meta.outputs.DEPLOYMENT_ID }} $umbracoCloudApiKey
+        shell: bash
