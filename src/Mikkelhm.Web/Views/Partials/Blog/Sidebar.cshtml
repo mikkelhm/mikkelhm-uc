@@ -31,6 +31,6 @@
         @*@Html.ThemedPartial(Model, "SearchBox")*@
 
         @await Html.PartialAsync("Blog/TagCloud", Model)
-
     </header>
+    @await Html.PartialAsync("Blog/SystemInformation")
 </div>
