@@ -18,6 +18,8 @@ namespace Mikkelhm.Core.Frontend
         public static string GetUmbracoVersion()
         {
             var version = typeof(Umbraco.Cms.Core.Constants).Assembly.GetName().Version;
+            if (version is null)
+                return "Unknown";
             return $"{version.Major}.{version.Minor}.{version.Build}";
         }
     }
