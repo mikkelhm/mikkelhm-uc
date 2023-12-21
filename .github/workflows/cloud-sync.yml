@@ -1,6 +1,7 @@
 name: Umbraco Cloud Sync
 
 on:
+
   workflow_call:
     inputs: 
       projectId: 
@@ -15,9 +16,9 @@ env:
   umbracoCloudApiKey: ${{ secrets.umbracoCloudApiKey }}
 
 jobs:
-  environment: Umbraco Cloud
   preflight:
     name: Preflight checks
+    environment: Umbraco Cloud
     runs-on: ubuntu-latest
     steps:
       # Gets the latest CICD Flow deployment if there is any
@@ -37,6 +38,7 @@ jobs:
   checkForChanges:
     name: Check if there are changes since latest deployment
     needs: preflight
+    environment: Umbraco Cloud
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -75,6 +77,7 @@ jobs:
   applyRemoteChanges:
     name: Apply remote changes
     needs: [preflight, checkForChanges]
+    environment: Umbraco Cloud
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

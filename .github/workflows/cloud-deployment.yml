@@ -17,6 +17,7 @@ env:
 jobs:
   prepareDeployment:
     name: Prepare Deployment to cloud
+    environment: Umbraco Cloud
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -40,6 +41,7 @@ jobs:
     
   callUmbracoApi:
     name: Upload Source And Start Deployment
+    environment: Umbraco Cloud
     runs-on: ubuntu-latest
     needs: prepareDeployment
     outputs: 
@@ -86,6 +88,7 @@ jobs:
 
   awaitDeploymentFinished:
     name: Await deployment to finish
+    environment: Umbraco Cloud
     runs-on: ubuntu-latest
     needs: callUmbracoApi
     steps:

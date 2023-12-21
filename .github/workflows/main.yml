@@ -26,6 +26,7 @@ jobs:
       umbracoCloudApiKey: ${{ secrets.UMBRACO_CLOUD_CICD_API_KEY }}
     
   cloud-deployment:
+    if: github.ref_name == 'main'
     needs: cloud-sync
     name: 'Deploy to Umbraco Cloud'
     uses: ./.github/workflows/cloud-deployment.yml
