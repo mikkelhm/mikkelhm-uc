@@ -9,41 +9,27 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  projectId: ${{ vars.UMBRACO_CLOUD_PROJECT_ID }}
-  umbracoCloudApiKey: ${{ secrets.UMBRACO_CLOUD_CICD_API_KEY }}
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build: 
+    name: 'Build'
     uses: ./.github/workflows/build.yml
 
-  publish:
+  cloud-sync:
     if: github.ref_name == 'main'
-    name: 'Publish to Umbraco Cloud'
-    runs-on: ubuntu-latest
-    environment: Umbraco Cloud
+    name: 'Syncronize changes with Umbraco Cloud'
     needs: build
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Create Deployment Meta
-        id: deployment-meta
-        run: $GITHUB_WORKSPACE/.github/workflows/scripts/create_deployment.sh $projectId $umbracoCloudApiKey "Run number ${{github.run_number}}"
-        shell: bash
-
-      - name: Zip Source Code
-        run: zip -r sources.zip . -x ".git/*" ".github/*" "src/UmbracoProject/bin/*" "src/UmbracoProject/obj/*" "node_modules/*"
-        shell: bash
-
-      - name: Post Zipped Artifact
-        run: $GITHUB_WORKSPACE/.github/workflows/scripts/upload_package.sh $projectId ${{ steps.deployment-meta.outputs.DEPLOYMENT_ID }} $umbracoCloudApiKey $GITHUB_WORKSPACE/sources.zip
-        shell: bash
-
-      - name: Request Start Deployment
-        run: $GITHUB_WORKSPACE/.github/workflows/scripts/start_deployment.sh $projectId ${{ steps.deployment-meta.outputs.DEPLOYMENT_ID }} $umbracoCloudApiKey
-        shell: bash
-
-      - name: Wait for deployment completed
-        run: $GITHUB_WORKSPACE/.github/workflows/scripts/get_deployment_status.sh $projectId ${{ steps.deployment-meta.outputs.DEPLOYMENT_ID }} $umbracoCloudApiKey
-        shell: bash
+    uses: ./.github/workflows/cloud-sync.yml
+    with:
+      projectId: ${{ vars.UMBRACO_CLOUD_PROJECT_ID }}
+    secrets:
+      umbracoCloudApiKey: ${{ secrets.UMBRACO_CLOUD_CICD_API_KEY }}
+    
+  cloud-deployment:
+    needs: cloud-sync
+    name: 'Deploy to Umbraco Cloud'
+    uses: ./.github/workflows/cloud-deployment.yml
+    with:
+      projectId: ${{ vars.UMBRACO_CLOUD_PROJECT_ID }}
+    secrets:
+      umbracoCloudApiKey: ${{ secrets.UMBRACO_CLOUD_CICD_API_KEY }}

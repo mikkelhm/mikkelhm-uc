@@ -1,9 +1,8 @@
-name: 'Build solution'
 on: 
   workflow_call:
 jobs:
   build:
-    name: 'Build'
+    name: 'Build solution'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
