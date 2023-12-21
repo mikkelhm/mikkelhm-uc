@@ -4,7 +4,6 @@ name: 'Build and Publish to Umbraco Cloud'
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab
@@ -31,6 +30,7 @@ jobs:
       run: dotnet build "src\Mikkelhm.sln" --no-restore
 
   publish:
+    if: github.ref_name == 'main'
     name: 'Publish to Umbraco Cloud'
     runs-on: ubuntu-latest
     environment: Umbraco Cloud
