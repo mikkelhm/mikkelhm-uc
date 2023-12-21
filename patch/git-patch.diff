@@ -1,0 +1,38 @@
+diff --git a/src/Mikkelhm.Web/umbraco/Deploy/Revision/data-type__8f89b8ab84d24ff0838932954b8404b6.uda b/src/Mikkelhm.Web/umbraco/Deploy/Revision/data-type__8f89b8ab84d24ff0838932954b8404b6.uda
+index db66b4d..ba824ae 100644
+--- a/src/Mikkelhm.Web/umbraco/Deploy/Revision/data-type__8f89b8ab84d24ff0838932954b8404b6.uda
++++ b/src/Mikkelhm.Web/umbraco/Deploy/Revision/data-type__8f89b8ab84d24ff0838932954b8404b6.uda
+@@ -2,7 +2,6 @@
+   "Name": "Blog post - Body - Rich Text Editor",
+   "Alias": "",
+   "EditorAlias": "Umbraco.TinyMCE",
+-  "DatabaseType": 0,
+   "Configuration": {
+     "editor": {
+       "toolbar": [
+@@ -24,20 +23,19 @@
+       "maxImageSize": 1200,
+       "mode": "inline"
+     },
++    "useLiveEditing": false,
+     "overlaySize": "medium",
+     "hideLabel": false,
+     "mediaParentId": "umb://media/7e571ea735cf43e0bb98597264d8563f",
+     "ignoreUserStartNodes": false
+   },
+-  "Parent": null,
+   "Udi": "umb://data-type/8f89b8ab84d24ff0838932954b8404b6",
+   "Dependencies": [
+     {
+       "Udi": "umb://media/7e571ea735cf43e0bb98597264d8563f",
+-      "Ordering": false,
+-      "Mode": 1
++      "Mode": "Exist"
+     }
+   ],
+   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
+-  "__version": "12.0.5"
++  "__version": "13.0.0"
+ }
+\ No newline at end of file
+
