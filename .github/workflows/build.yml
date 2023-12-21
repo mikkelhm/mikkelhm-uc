@@ -31,6 +31,7 @@ jobs:
       run: dotnet build "src\Mikkelhm.sln" --no-restore
 
   publish:
+    if: github.ref_name == 'main'
     name: 'Publish to Umbraco Cloud'
     runs-on: ubuntu-latest
     environment: Umbraco Cloud
