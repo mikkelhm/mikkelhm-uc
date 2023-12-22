@@ -75,21 +75,16 @@ jobs:
       remoteChanges: ${{ steps.latest-changes.outputs.remoteChanges }}  
 
   applyRemoteChanges:
+    if: ${{ needs.checkForChanges.outputs.remoteChanges == 'yes' }}
     name: Apply remote changes
     needs: [preflight, checkForChanges]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        env:
-          remoteChanges: ${{ needs.checkForChanges.outputs.remoteChanges }}
-        if: ${{ env.remoteChanges == 'yes' }}
         with:
           fetch-depth: 0
 
       - name: Get stored diff
-        env:
-          remoteChanges: ${{ needs.checkForChanges.outputs.remoteChanges }}
-        if: ${{ env.remoteChanges == 'yes' }}
         uses: actions/download-artifact@v3
         with:
           name: git-patch
@@ -101,9 +96,7 @@ jobs:
       # Stopping a new pipeline run by using the "[skip ci]" as part of commit message 
       - name: Applying git patch to branch
         env:
-          remoteChanges: ${{ needs.checkForChanges.outputs.remoteChanges }}
           latestDeploymentId: ${{ needs.preflight.outputs.latestDeployemntId }}
-        if: ${{ env.remoteChanges == 'yes' }}
         id: apply-git-patch
         continue-on-error: true
         run: |
