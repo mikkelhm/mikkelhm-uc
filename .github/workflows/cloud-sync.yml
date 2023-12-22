@@ -65,6 +65,7 @@ jobs:
 
       - name: Store diff before applying
         if: ${{ steps.latest-changes.outputs.remoteChanges == 'yes' }}
+        id: store-git-patch
         uses: actions/upload-artifact@v3
         with:
           name: git-patch
@@ -113,8 +114,20 @@ jobs:
           git commit -m "Adding cloud changes since deployment ${{ env.latestDeploymentId }} [skip ci]"
           git push
 
-      - name: Unable to apply remote changes
+      - name: Approve git patch issues
         if: steps.apply-git-patch.outcome != 'success'
-        run: | 
-          echo "::error:: Unable to apply the patch file, you will need to manually apply the patch file. It is attached as an artifact to this run."
-          exit 1
+        env:
+          latestDeploymentId: ${{ needs.preflight.outputs.latestDeployemntId }}
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: mikkelhm
+          minimum-approvals: 1
+          issue-title: "Applying git patch for deployment with id ${{ env.latestDeploymentId }} failed"
+          issue-body: |
+            Please approve or deny the deployment with Id ${{ env.latestDeploymentId }}
+            The deployment had issues applying the git patch changes - This could be caused by the merge had already happened on this
+            local repository previously, or theres simply a merge conflict that needs to be solved.
+            If the patch should just be ignored, please just approvce this issue. Else reject it.
+            The git patch can be found here: ${{needs.checkForChanges.store-git-patch.outputs.artifact-url}}
+          exclude-workflow-initiator-as-approver: false
