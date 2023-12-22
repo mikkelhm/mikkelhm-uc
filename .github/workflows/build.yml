@@ -1,3 +1,4 @@
+name: 'Build & Test Solution'
 on: 
   workflow_call:
 jobs:
