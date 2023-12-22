@@ -20,17 +20,15 @@ jobs:
     name: 'Syncronize changes with Umbraco Cloud'
     needs: build
     uses: ./.github/workflows/cloud-sync.yml
-    with:
-      projectId: ${{ secrets.UMBRACO_CLOUD_PROJECT_ID }}
     secrets:
       umbracoCloudApiKey: ${{ secrets.UMBRACO_CLOUD_CICD_API_KEY }}
+      projectId: ${{ secrets.UMBRACO_CLOUD_PROJECT_ID }}
     
   cloud-deployment:
     if: github.ref_name == 'main'
     needs: cloud-sync
     name: 'Deploy to Umbraco Cloud'
     uses: ./.github/workflows/cloud-deployment.yml
-    with:
-      projectId: ${{ secrets.UMBRACO_CLOUD_PROJECT_ID }}
     secrets:
       umbracoCloudApiKey: ${{ secrets.UMBRACO_CLOUD_CICD_API_KEY }}
+      projectId: ${{ secrets.UMBRACO_CLOUD_PROJECT_ID }}
