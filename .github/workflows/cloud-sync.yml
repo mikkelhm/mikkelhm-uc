@@ -99,8 +99,8 @@ jobs:
         id: apply-git-patch
         continue-on-error: true
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name Umbraco Cloud Github Sync
+          git config user.email github-actions@h-madsen.dk
           git apply -v ${{GITHUB.WORKSPACE}}/patch/git-patch.diff
           git add *
           git commit -m "Adding cloud changes since deployment ${{ env.latestDeploymentId }} [skip ci]"
