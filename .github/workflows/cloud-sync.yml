@@ -103,6 +103,8 @@ jobs:
           remoteChanges: ${{ needs.checkForChanges.outputs.remoteChanges }}
           latestDeploymentId: ${{ needs.preflight.outputs.latestDeployemntId }}
         if: ${{ env.remoteChanges == 'yes' }}
+        id: apply-git-patch
+        continue-on-error: true
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
@@ -112,6 +114,7 @@ jobs:
           git push
 
       - name: Unable to apply remote changes
-        if: failure()
+        if: steps.apply-git-patch.outcome != 'success'
         run: | 
           echo "::error:: Unable to apply the patch file, you will need to manually apply the patch file. It is attached as an artifact to this run."
+          exit 1
