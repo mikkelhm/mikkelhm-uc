@@ -106,7 +106,12 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git apply --ignore-space-change --ignore-whitespace ${{GITHUB.WORKSPACE}}/patch/git-patch.diff
+          git apply -v ${{GITHUB.WORKSPACE}}/patch/git-patch.diff
           git add *
           git commit -m "Adding cloud changes since deployment ${{ env.latestDeploymentId }} [skip ci]"
           git push
+
+      - name: Unable to apply remote changes
+        if: failure()
+        run: | 
+          echo "::error:: Unable to apply the patch file, you will need to manually apply the patch file. It is attached as an artifact to this run."
