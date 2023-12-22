@@ -21,7 +21,7 @@ jobs:
     needs: build
     uses: ./.github/workflows/cloud-sync.yml
     with:
-      projectId: ${{ vars.UMBRACO_CLOUD_PROJECT_ID }}
+      projectId: ${{ secrets.UMBRACO_CLOUD_PROJECT_ID }}
     secrets:
       umbracoCloudApiKey: ${{ secrets.UMBRACO_CLOUD_CICD_API_KEY }}
     
@@ -31,6 +31,6 @@ jobs:
     name: 'Deploy to Umbraco Cloud'
     uses: ./.github/workflows/cloud-deployment.yml
     with:
-      projectId: ${{ vars.UMBRACO_CLOUD_PROJECT_ID }}
+      projectId: ${{ secrets.UMBRACO_CLOUD_PROJECT_ID }}
     secrets:
       umbracoCloudApiKey: ${{ secrets.UMBRACO_CLOUD_CICD_API_KEY }}
