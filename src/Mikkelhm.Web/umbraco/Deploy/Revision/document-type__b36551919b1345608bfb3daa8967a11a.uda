@@ -5,20 +5,10 @@
   "AllowedTemplates": [
     "umb://template/eb8a1f9abc1d43fb8c3f4660f7b63c12"
   ],
-  "HistoryCleanup": {
-    "preventCleanup": false,
-    "keepAllVersionsNewerThanDays": null,
-    "keepLatestVersionPerDayForDays": null
-  },
+  "HistoryCleanup": {},
   "Icon": "icon-info color-black",
   "Thumbnail": "folder.png",
-  "Description": null,
-  "IsContainer": false,
   "Permissions": {
-    "AllowVaryingByCulture": false,
-    "AllowVaryingBySegment": false,
-    "AllowedAtRoot": false,
-    "IsElementType": false,
     "AllowedChildContentTypes": [
       "umb://document-type/3cfa74e895834944b5849fdebef1eff2"
     ]
@@ -39,44 +29,20 @@
           "Key": "db9ad5a2-dd81-4c9e-885f-24c25fa12e87",
           "Alias": "disqusShortname",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
-          "Name": "Disqus Shortname",
-          "SortOrder": 0,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "Name": "Disqus Shortname"
         },
         {
           "Key": "dc8f66ee-ff14-4640-a43a-fc15d01dd6ef",
           "Alias": "disqusIdentifier",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
           "Name": "Disqus identifier",
-          "SortOrder": 1,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "SortOrder": 1
         }
       ]
     },
     {
       "Key": "e8be820f-aee2-4230-8278-c775d227f9f8",
       "Name": "Blog",
-      "SortOrder": 0,
       "Type": 1,
       "Alias": "blog",
       "PropertyTypes": [
@@ -84,55 +50,21 @@
           "Key": "877fb1fb-a90c-4fb3-999d-009e7a4cee54",
           "Alias": "blogSidebarLogo",
           "DataType": "umb://data-type/dc34b7119e5b4a6da59b79c9f08f338d",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
           "Name": "Blog sidebar logo",
-          "SortOrder": 2,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "SortOrder": 2
         },
         {
           "Key": "d5c8834c-33b0-42b6-8633-7172b08a10ef",
           "Alias": "blogTitle",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
-          "Name": "Blog title",
-          "SortOrder": 0,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "Name": "Blog title"
         },
         {
           "Key": "dc73e082-3f2e-4f23-abcd-6166962146fe",
           "Alias": "blogDescription",
           "DataType": "umb://data-type/c6bac0dd4ab945b18e30e4b619ee5da3",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
           "Name": "Blog description",
-          "SortOrder": 1,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "SortOrder": 1
         }
       ]
     }
@@ -142,40 +74,32 @@
   "Dependencies": [
     {
       "Udi": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://data-type/c6bac0dd4ab945b18e30e4b619ee5da3",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://data-type/dc34b7119e5b4a6da59b79c9f08f338d",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://document-type-container/7cc2deafa60c41c2a18a184d1caf3e62",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
-      "Udi": "umb://document-type/3cfa74e895834944b5849fdebef1eff2",
-      "Ordering": false,
-      "Mode": 0
+      "Udi": "umb://document-type/3cfa74e895834944b5849fdebef1eff2"
     },
     {
       "Udi": "umb://document-type/8139143477a34379a84310f0ce4685ea",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://template/eb8a1f9abc1d43fb8c3f4660f7b63c12",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "12.0.5"
+  "__version": "13.1.0"
 }

@@ -1,22 +1,12 @@
 {
   "Name": "AstaPhotoGallery",
   "Alias": "astaPhotoGallery",
-  "DefaultTemplate": null,
   "AllowedTemplates": [],
-  "HistoryCleanup": {
-    "preventCleanup": false,
-    "keepAllVersionsNewerThanDays": null,
-    "keepLatestVersionPerDayForDays": null
-  },
+  "HistoryCleanup": {},
   "Icon": "icon-item-arrangement",
   "Thumbnail": "folder.png",
-  "Description": null,
   "IsContainer": true,
   "Permissions": {
-    "AllowVaryingByCulture": false,
-    "AllowVaryingBySegment": false,
-    "AllowedAtRoot": false,
-    "IsElementType": false,
     "AllowedChildContentTypes": [
       "umb://document-type/cf4a5f8bb08d4a9898d69afa4448ac08"
     ]
@@ -29,15 +19,12 @@
   "Dependencies": [
     {
       "Udi": "umb://document-type-container/61464945308042199a697c71009c7941",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
-      "Udi": "umb://document-type/cf4a5f8bb08d4a9898d69afa4448ac08",
-      "Ordering": false,
-      "Mode": 0
+      "Udi": "umb://document-type/cf4a5f8bb08d4a9898d69afa4448ac08"
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "12.0.5"
+  "__version": "13.1.0"
 }

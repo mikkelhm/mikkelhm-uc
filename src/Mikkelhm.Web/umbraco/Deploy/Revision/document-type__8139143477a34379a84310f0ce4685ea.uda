@@ -1,21 +1,11 @@
 {
   "Name": "SEO section",
   "Alias": "sEOSection",
-  "DefaultTemplate": null,
   "AllowedTemplates": [],
-  "HistoryCleanup": {
-    "preventCleanup": false,
-    "keepAllVersionsNewerThanDays": null,
-    "keepLatestVersionPerDayForDays": null
-  },
+  "HistoryCleanup": {},
   "Icon": "icon-defrag",
   "Thumbnail": "folder.png",
-  "Description": null,
-  "IsContainer": false,
   "Permissions": {
-    "AllowVaryingByCulture": false,
-    "AllowVaryingBySegment": false,
-    "AllowedAtRoot": false,
     "IsElementType": true,
     "AllowedChildContentTypes": []
   },
@@ -26,44 +16,20 @@
       "Key": "19ec5e3f-eba4-4f77-98dc-68e7a04becbc",
       "Name": "SEO",
       "SortOrder": 10,
-      "Type": 0,
       "Alias": "seO",
       "PropertyTypes": [
         {
           "Key": "49e4cb9a-6b95-4769-b847-17902fca3705",
           "Alias": "metaDescription",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
           "Name": "Meta description",
-          "SortOrder": 1,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "SortOrder": 1
         },
         {
           "Key": "589ca1ba-1cb1-4218-a754-2407fb2ba7aa",
           "Alias": "metaTitle",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
-          "Name": "Meta title",
-          "SortOrder": 0,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "Name": "Meta title"
         }
       ]
     },
@@ -71,62 +37,27 @@
       "Key": "b6900629-0d3a-4e95-abf8-5bd7161434cb",
       "Name": "Open Graph",
       "SortOrder": 11,
-      "Type": 0,
       "Alias": "openGraph",
       "PropertyTypes": [
         {
           "Key": "14d2fe94-211b-4c12-b4da-06395a4ff3bd",
           "Alias": "openGraphImage",
           "DataType": "umb://data-type/159ea2ee26334d2e8fd188c634159f70",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
           "Name": "Open graph image",
-          "SortOrder": 2,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "SortOrder": 2
         },
         {
           "Key": "c23480fd-aea8-4a91-a047-201e29c282a8",
           "Alias": "openGraphTitle",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
-          "Name": "Open graph title",
-          "SortOrder": 0,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "Name": "Open graph title"
         },
         {
           "Key": "e27a5335-e76f-42b8-9e5c-e3ae5af3b1dd",
           "Alias": "openGraphDescription",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
           "Name": "Open graph description",
-          "SortOrder": 1,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "SortOrder": 1
         }
       ]
     }
@@ -136,20 +67,17 @@
   "Dependencies": [
     {
       "Udi": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://data-type/159ea2ee26334d2e8fd188c634159f70",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://document-type-container/b64743a42354412daa23b3cb89b6535b",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "12.0.5"
+  "__version": "13.1.0"
 }
