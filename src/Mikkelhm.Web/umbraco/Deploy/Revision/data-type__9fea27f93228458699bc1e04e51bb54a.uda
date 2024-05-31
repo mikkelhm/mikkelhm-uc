@@ -2,7 +2,7 @@
   "Name": "List View - blogPostRepository",
   "Alias": "",
   "EditorAlias": "Umbraco.ListView",
-  "DatabaseType": 1,
+  "DatabaseType": "Nvarchar",
   "Configuration": {
     "pageSize": 20,
     "orderDirection": "desc",
@@ -51,9 +51,8 @@
     "showContentFirst": false,
     "useInfiniteEditor": false
   },
-  "Parent": null,
   "Udi": "umb://data-type/9fea27f93228458699bc1e04e51bb54a",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "12.0.5"
+  "__version": "13.1.0"
 }

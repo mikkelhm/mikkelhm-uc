@@ -2,7 +2,6 @@
   "Name": "Blog home - Blog sidebar logo - Media Picker",
   "Alias": "",
   "EditorAlias": "Umbraco.MediaPicker3",
-  "DatabaseType": 0,
   "Configuration": {
     "filter": "Image",
     "multiple": false,
@@ -14,9 +13,8 @@
     "crops": [],
     "ignoreUserStartNodes": false
   },
-  "Parent": null,
   "Udi": "umb://data-type/dc34b7119e5b4a6da59b79c9f08f338d",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "12.0.5"
+  "__version": "13.1.0"
 }
