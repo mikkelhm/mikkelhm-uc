@@ -6,14 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cloud.Cms.PublicAccess" Version="13.0.0" />
-    <PackageReference Include="Umbraco.Cloud.Identity.Cms" Version="13.0.0" />
-    <PackageReference Include="Umbraco.Cloud.StorageProviders.AzureBlob" Version="13.0.0" />
-    <PackageReference Include="Umbraco.Cms" Version="13.0.3" />
-    <PackageReference Include="Umbraco.Deploy.Cloud" Version="13.0.1" />
-    <PackageReference Include="Umbraco.Deploy.Contrib" Version="13.0.0" />
-    <PackageReference Include="Umbraco.Forms" Version="13.0.0" />
-    <PackageReference Include="Umbraco.Forms.Deploy" Version="13.0.0" />
+    <PackageReference Include="Umbraco.Cloud.Cms.PublicAccess" Version="14.0.0" />
+    <PackageReference Include="Umbraco.Cloud.Identity.Cms" Version="14.0.0" />
+    <PackageReference Include="Umbraco.Cloud.StorageProviders.AzureBlob" Version="14.0.0" />
+    <PackageReference Include="Umbraco.Cms" Version="14.0.0" />
+    <PackageReference Include="Umbraco.Deploy.Cloud" Version="14.0.0" />
+    <PackageReference Include="Umbraco.Deploy.Contrib" Version="14.0.0" />
+    <PackageReference Include="Umbraco.Forms" Version="14.0.0" />
+    <PackageReference Include="Umbraco.Forms.Deploy" Version="14.0.0" />
   </ItemGroup>
 
   <ItemGroup>
