@@ -2,15 +2,13 @@
   "Name": "Blog master",
   "Alias": "BlogMaster",
   "File": "umb://template-file/BlogMaster.cshtml",
-  "Master": null,
   "Udi": "umb://template/c8079226d6524d9185878213f1f9d491",
   "Dependencies": [
     {
       "Udi": "umb://template-file/BlogMaster.cshtml",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.TemplateArtifact",
-  "__version": "12.0.5"
+  "__version": "13.1.0"
 }
