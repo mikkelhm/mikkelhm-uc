@@ -33,7 +33,7 @@
         "height": 400
       }
     ],
-    "ignoreUserStartNodes": false,
+    "ignoreUserStartNodes": true,
     "umbMigrationV14": "2024-05-31T13:08:02.4075313\u002B02:00"
   },
   "Parent": "umb://data-type-container/32c8376907fc425e8619a8a01985ae4f",
