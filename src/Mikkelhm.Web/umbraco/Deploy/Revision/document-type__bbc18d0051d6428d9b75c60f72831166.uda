@@ -5,20 +5,10 @@
   "AllowedTemplates": [
     "umb://template/c3b98240086f46d49cc939d36e357407"
   ],
-  "HistoryCleanup": {
-    "preventCleanup": false,
-    "keepAllVersionsNewerThanDays": null,
-    "keepLatestVersionPerDayForDays": null
-  },
+  "HistoryCleanup": {},
   "Icon": "icon-document color-black",
   "Thumbnail": "folder.png",
-  "Description": null,
-  "IsContainer": false,
   "Permissions": {
-    "AllowVaryingByCulture": false,
-    "AllowVaryingBySegment": false,
-    "AllowedAtRoot": false,
-    "IsElementType": false,
     "AllowedChildContentTypes": []
   },
   "Parent": "umb://document-type-container/7cc2deafa60c41c2a18a184d1caf3e62",
@@ -29,45 +19,20 @@
     {
       "Key": "02d5a914-4aad-4cef-9e7c-de2c9427cff9",
       "Name": "Content",
-      "SortOrder": 0,
-      "Type": 0,
       "Alias": "content",
       "PropertyTypes": [
         {
           "Key": "1eb2ec47-657a-44a9-b1d4-0a3412c1bf1c",
           "Alias": "references",
           "DataType": "umb://data-type/55aca15649b940f885a4200c1f0e7b67",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
           "Name": "References",
-          "SortOrder": 1,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "SortOrder": 1
         },
         {
           "Key": "bef985a0-6e7c-4c5c-9d7c-d4a9f97c1c2d",
           "Alias": "body",
           "DataType": "umb://data-type/8f89b8ab84d24ff0838932954b8404b6",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
-          "Name": "Body",
-          "SortOrder": 0,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "Name": "Body"
         }
       ]
     },
@@ -75,80 +40,34 @@
       "Key": "dd363d2f-8ae4-4124-a6f4-2c8c3f580817",
       "Name": "Attributes",
       "SortOrder": 1,
-      "Type": 0,
       "Alias": "attributes",
       "PropertyTypes": [
         {
           "Key": "094c0df7-9d02-4403-903a-a9686d3a47e7",
           "Alias": "enableComments",
           "DataType": "umb://data-type/92897bc6a5f34ffeae27f2e7e33dda49",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
           "Name": "Enable comments",
-          "SortOrder": 2,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "SortOrder": 2
         },
         {
           "Key": "16c9e49d-3e65-4e4e-b117-9b9a27b7c34a",
           "Alias": "publishedDate",
           "DataType": "umb://data-type/e4d66c0fb935420081f0025f7256b89a",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
           "Name": "Published date",
-          "SortOrder": 3,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "SortOrder": 3
         },
         {
           "Key": "32154f88-f5e3-4b35-9ab3-4e545a19fe8d",
           "Alias": "excerpt",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
-          "Name": "Excerpt",
-          "SortOrder": 0,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "Name": "Excerpt"
         },
         {
           "Key": "955a42e4-65c0-491e-ab83-979e7359f29f",
           "Alias": "tags",
           "DataType": "umb://data-type/f2d7803b41604b69b1e383365bb3107c",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
           "Name": "Tags",
-          "SortOrder": 1,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "SortOrder": 1
         }
       ]
     }
@@ -158,50 +77,41 @@
   "Dependencies": [
     {
       "Udi": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://data-type/55aca15649b940f885a4200c1f0e7b67",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://data-type/8f89b8ab84d24ff0838932954b8404b6",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://data-type/92897bc6a5f34ffeae27f2e7e33dda49",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://data-type/e4d66c0fb935420081f0025f7256b89a",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://data-type/f2d7803b41604b69b1e383365bb3107c",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://document-type-container/7cc2deafa60c41c2a18a184d1caf3e62",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://document-type/8139143477a34379a84310f0ce4685ea",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://template/c3b98240086f46d49cc939d36e357407",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "12.0.5"
+  "__version": "14.0.0"
 }

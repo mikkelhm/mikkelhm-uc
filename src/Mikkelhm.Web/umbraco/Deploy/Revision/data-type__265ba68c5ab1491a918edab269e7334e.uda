@@ -1,13 +1,11 @@
 {
   "Name": "Asta Media Picker",
-  "Alias": "",
   "EditorAlias": "Umbraco.MediaPicker3",
-  "DatabaseType": 0,
   "Configuration": {
-    "filter": "Image",
+    "filter": "cc07b313-0843-4aa8-bbda-871c8da728c8",
     "multiple": false,
     "validationLimit": {},
-    "startNodeId": "umb://media/e417618c965145099385a8a779ed45b1",
+    "startNodeId": "e417618c-9651-4509-9385-a8a779ed45b1",
     "enableLocalFocalPoint": true,
     "crops": [
       {
@@ -35,17 +33,25 @@
         "height": 400
       }
     ],
-    "ignoreUserStartNodes": false
+    "ignoreUserStartNodes": false,
+    "umbMigrationV14": "2024-05-31T13:08:02.4075313\u002B02:00"
   },
   "Parent": "umb://data-type-container/32c8376907fc425e8619a8a01985ae4f",
   "Udi": "umb://data-type/265ba68c5ab1491a918edab269e7334e",
   "Dependencies": [
     {
       "Udi": "umb://data-type-container/32c8376907fc425e8619a8a01985ae4f",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://media-type/cc07b31308434aa8bbda871c8da728c8",
+      "Mode": "Exist"
+    },
+    {
+      "Udi": "umb://media/e417618c965145099385a8a779ed45b1",
+      "Mode": "Exist"
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "12.0.5"
+  "__version": "14.0.0"
 }

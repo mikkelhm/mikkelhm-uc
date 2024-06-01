@@ -1,16 +1,14 @@
 {
   "Name": "Blog post - Tags - Tags",
-  "Alias": "",
   "EditorAlias": "Umbraco.Tags",
-  "DatabaseType": 1,
   "Configuration": {
     "group": "Blog",
     "storageType": "Json",
-    "Delimiter": "\u0000"
+    "umbMigrationV14": "2024-05-31T13:08:02.4205094\u002B02:00",
+    "delimiter": "\u0000"
   },
-  "Parent": null,
   "Udi": "umb://data-type/f2d7803b41604b69b1e383365bb3107c",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "12.0.5"
+  "__version": "14.0.0"
 }
