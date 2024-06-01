@@ -5,20 +5,10 @@
   "AllowedTemplates": [
     "umb://template/d9e58962cc7d4599a4219ca9d558f9b3"
   ],
-  "HistoryCleanup": {
-    "preventCleanup": false,
-    "keepAllVersionsNewerThanDays": null,
-    "keepLatestVersionPerDayForDays": null
-  },
+  "HistoryCleanup": {},
   "Icon": "icon-photo-album color-black",
   "Thumbnail": "folder.png",
-  "Description": null,
-  "IsContainer": false,
   "Permissions": {
-    "AllowVaryingByCulture": false,
-    "AllowVaryingBySegment": false,
-    "AllowedAtRoot": false,
-    "IsElementType": false,
     "AllowedChildContentTypes": [
       "umb://document-type/e643b6f0f5604032bb45726ee0193269"
     ]
@@ -29,45 +19,20 @@
     {
       "Key": "eb2864fe-ca2d-4714-808d-0e3ecae407d1",
       "Name": "Content",
-      "SortOrder": 0,
-      "Type": 0,
       "Alias": "content",
       "PropertyTypes": [
         {
           "Key": "2f908182-efba-4a62-a5e9-a4fcfa0a92ca",
           "Alias": "body",
           "DataType": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
           "Name": "Body",
-          "SortOrder": 1,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "SortOrder": 1
         },
         {
           "Key": "94f0f014-b4b2-4ec4-a4c1-cc1ef8e8c2f5",
           "Alias": "headline",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-          "Description": null,
-          "Mandatory": false,
-          "MandatoryMessage": null,
-          "Name": "Headline",
-          "SortOrder": 0,
-          "Validation": null,
-          "ValidationMessage": null,
-          "VariesByCulture": false,
-          "VariesBySegment": false,
-          "LabelOnTop": false,
-          "MemberCanEdit": false,
-          "ViewOnProfile": false,
-          "IsSensitive": false
+          "Name": "Headline"
         }
       ]
     }
@@ -77,30 +42,24 @@
   "Dependencies": [
     {
       "Udi": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
       "Udi": "umb://document-type-container/61464945308042199a697c71009c7941",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     },
     {
-      "Udi": "umb://document-type/e643b6f0f5604032bb45726ee0193269",
-      "Ordering": false,
-      "Mode": 0
+      "Udi": "umb://document-type/e643b6f0f5604032bb45726ee0193269"
     },
     {
       "Udi": "umb://template/d9e58962cc7d4599a4219ca9d558f9b3",
-      "Ordering": true,
-      "Mode": 0
+      "Ordering": true
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "12.0.5"
+  "__version": "14.0.0"
 }

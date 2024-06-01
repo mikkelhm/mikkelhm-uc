@@ -1,22 +1,23 @@
 {
-  "Name": "List View - astaPhotoGallery",
+  "Name": "List View - Members",
   "EditorAlias": "Umbraco.ListView",
   "DatabaseType": "Nvarchar",
   "Configuration": {
     "pageSize": 10,
+    "orderBy": "username",
     "orderDirection": "asc",
     "includeProperties": [
       {
-        "alias": "title",
-        "header": "Title",
+        "alias": "username",
+        "header": "User name",
         "nameTemplate": null,
-        "isSystem": false
+        "isSystem": true
       },
       {
-        "alias": "photo",
-        "header": "Photo",
-        "nameTemplate": "{{ value }}",
-        "isSystem": false
+        "alias": "email",
+        "header": "Email",
+        "nameTemplate": null,
+        "isSystem": true
       },
       {
         "alias": "updateDate",
@@ -25,27 +26,19 @@
         "isSystem": true
       }
     ],
-    "orderBy": "name",
     "layouts": [
-      {
-        "name": "Grid",
-        "collectionView": "Umb.CollectionView.Document.Grid",
-        "icon": "icon-thumbnails-small",
-        "isSystem": true,
-        "selected": false
-      },
       {
         "name": "List",
         "collectionView": "Umb.CollectionView.Document.Table",
         "icon": "icon-list",
         "isSystem": true,
-        "selected": false
+        "selected": true
       },
       {
-        "name": "AstaPhotoGallery",
-        "collectionView": null,
-        "icon": "icon-stop",
-        "isSystem": false,
+        "name": "Grid",
+        "collectionView": "Umb.CollectionView.Document.Grid",
+        "icon": "icon-thumbnails-small",
+        "isSystem": true,
         "selected": true
       }
     ],
@@ -56,12 +49,12 @@
       "allowBulkMove": true,
       "allowBulkDelete": true
     },
-    "icon": "icon-list",
+    "icon": "icon-badge color-black",
     "showContentFirst": false,
     "useInfiniteEditor": false,
-    "umbMigrationV14": "2024-05-31T13:08:02.4098365\u002B02:00"
+    "umbMigrationV14": "2024-05-31T13:08:02.3712484\u002B02:00"
   },
-  "Udi": "umb://data-type/26fdbe41a0c34468a9b4f468f3c2cea1",
+  "Udi": "umb://data-type/aa2c52a0ce874e65a47c7df09358585d",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
   "__version": "14.0.0"

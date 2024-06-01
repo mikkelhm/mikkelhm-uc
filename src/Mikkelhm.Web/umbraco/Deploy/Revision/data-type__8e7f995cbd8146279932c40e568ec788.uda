@@ -1,12 +1,11 @@
 {
-  "Name": "Truefalse",
-  "EditorAlias": "Umbraco.TrueFalse",
+  "Name": "Label (integer)",
+  "EditorAlias": "Umbraco.Label",
   "DatabaseType": "Integer",
   "Configuration": {
-    "default": true,
-    "showLabels": false
+    "umbracoDataValueType": "INT"
   },
-  "Udi": "umb://data-type/92897bc6a5f34ffeae27f2e7e33dda49",
+  "Udi": "umb://data-type/8e7f995cbd8146279932c40e568ec788",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
   "__version": "14.0.0"
