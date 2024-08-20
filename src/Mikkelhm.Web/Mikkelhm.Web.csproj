@@ -9,7 +9,7 @@
     <PackageReference Include="Umbraco.Cloud.Cms.PublicAccess" Version="14.0.0" />
     <PackageReference Include="Umbraco.Cloud.Identity.Cms" Version="14.0.0" />
     <PackageReference Include="Umbraco.Cloud.StorageProviders.AzureBlob" Version="14.0.0" />
-    <PackageReference Include="Umbraco.Cms" Version="14.0.0" />
+    <PackageReference Include="Umbraco.Cms" Version="14.1.2" />
     <PackageReference Include="Umbraco.Deploy.Cloud" Version="14.0.0" />
     <PackageReference Include="Umbraco.Deploy.Contrib" Version="14.0.0" />
     <PackageReference Include="Umbraco.Forms" Version="14.0.0" />
