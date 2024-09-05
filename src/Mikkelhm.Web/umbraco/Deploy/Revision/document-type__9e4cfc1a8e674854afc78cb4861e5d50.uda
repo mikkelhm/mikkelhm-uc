@@ -17,6 +17,13 @@
       "Alias": "content",
       "PropertyTypes": [
         {
+          "Key": "b8a25120-603c-4824-8dcd-add9f7ef26b6",
+          "Alias": "anotherThing",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "Name": "Another thing",
+          "SortOrder": 1
+        },
+        {
           "Key": "ce959478-dae7-4712-add6-2de2cd39aaa7",
           "Alias": "body",
           "DataType": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
@@ -28,6 +35,10 @@
   "PropertyTypes": [],
   "Udi": "umb://document-type/9e4cfc1a8e674854afc78cb4861e5d50",
   "Dependencies": [
+    {
+      "Udi": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+      "Ordering": true
+    },
     {
       "Udi": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
       "Ordering": true
