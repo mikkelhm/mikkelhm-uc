@@ -1,6 +1,5 @@
 {
   "Name": "List View - blogPostRepository",
-  "Alias": "",
   "EditorAlias": "Umbraco.ListView",
   "DatabaseType": "Nvarchar",
   "Configuration": {
@@ -10,33 +9,36 @@
       {
         "alias": "publishedDate",
         "header": "Published",
-        "isSystem": 0
+        "nameTemplate": null,
+        "isSystem": false
       },
       {
         "alias": "sortOrder",
         "header": "Sort order",
-        "isSystem": 1
+        "nameTemplate": null,
+        "isSystem": true
       },
       {
         "alias": "updateDate",
         "header": "Last edited",
-        "isSystem": 1
+        "nameTemplate": null,
+        "isSystem": true
       }
     ],
     "orderBy": "publishedDate",
     "layouts": [
       {
         "name": "List",
-        "path": "views/propertyeditors/listview/layouts/list/list.html",
+        "collectionView": "Umb.CollectionView.Document.Table",
         "icon": "icon-list",
-        "isSystem": 1,
+        "isSystem": true,
         "selected": true
       },
       {
         "name": "Grid",
-        "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+        "collectionView": "Umb.CollectionView.Document.Grid",
         "icon": "icon-thumbnails-small",
-        "isSystem": 1,
+        "isSystem": true,
         "selected": false
       }
     ],
@@ -49,10 +51,11 @@
     },
     "icon": "icon-list",
     "showContentFirst": false,
-    "useInfiniteEditor": false
+    "useInfiniteEditor": false,
+    "umbMigrationV14": "2024-05-31T13:08:02.4197956\u002B02:00"
   },
   "Udi": "umb://data-type/9fea27f93228458699bc1e04e51bb54a",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "13.1.0"
+  "__version": "14.0.0"
 }

@@ -1,0 +1,11 @@
+{
+  "Name": "Richtext editor",
+  "EditorAlias": "Umbraco.RichText",
+  "Configuration": {
+    "value": ",code,undo,redo,cut,copy,mcepasteword,stylepicker,bold,italic,bullist,numlist,outdent,indent,mcelink,unlink,mceinsertanchor,mceimage,umbracomacro,mceinserttable,umbracoembed,mcecharmap,|1|1,2,3,|0|500,400|1049,|true|"
+  },
+  "Udi": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
+  "Dependencies": [],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
+  "__version": "14.0.0"
+}

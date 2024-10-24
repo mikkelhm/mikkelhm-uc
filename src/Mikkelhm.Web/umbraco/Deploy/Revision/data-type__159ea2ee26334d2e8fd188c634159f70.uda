@@ -1,18 +1,26 @@
 {
   "Name": "SEO section - Open graph image - Media Picker",
-  "Alias": "",
   "EditorAlias": "Umbraco.MediaPicker3",
   "Configuration": {
-    "filter": "Image",
+    "filter": "cc07b313-0843-4aa8-bbda-871c8da728c8",
     "multiple": false,
     "validationLimit": {},
-    "startNodeId": "umb://media/12164ae9d414485eb8d63c197bceb73d",
+    "startNodeId": "12164ae9-d414-485e-b8d6-3c197bceb73d",
     "enableLocalFocalPoint": false,
-    "crops": [],
-    "ignoreUserStartNodes": false
+    "ignoreUserStartNodes": false,
+    "umbMigrationV14": "2024-05-31T13:08:02.4207483\u002B02:00"
   },
   "Udi": "umb://data-type/159ea2ee26334d2e8fd188c634159f70",
-  "Dependencies": [],
+  "Dependencies": [
+    {
+      "Udi": "umb://media-type/cc07b31308434aa8bbda871c8da728c8",
+      "Mode": "Exist"
+    },
+    {
+      "Udi": "umb://media/12164ae9d414485eb8d63c197bceb73d",
+      "Mode": "Exist"
+    }
+  ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "13.1.0"
+  "__version": "14.0.0"
 }

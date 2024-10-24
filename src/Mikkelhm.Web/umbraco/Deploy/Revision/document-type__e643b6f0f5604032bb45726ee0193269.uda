@@ -5,7 +5,6 @@
   "HistoryCleanup": {},
   "Icon": "icon-item-arrangement",
   "Thumbnail": "folder.png",
-  "IsContainer": true,
   "Permissions": {
     "AllowedChildContentTypes": [
       "umb://document-type/cf4a5f8bb08d4a9898d69afa4448ac08"
@@ -26,5 +25,5 @@
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "13.1.0"
+  "__version": "14.0.0"
 }

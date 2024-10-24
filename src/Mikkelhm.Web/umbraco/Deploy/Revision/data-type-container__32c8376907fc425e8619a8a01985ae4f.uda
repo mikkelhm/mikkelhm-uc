@@ -1,9 +1,8 @@
 {
   "Name": "Asta",
-  "Alias": "",
   "ContainedObjectType": "30a2a501-1978-4ddb-a57b-f7efed43ba3c",
   "Udi": "umb://data-type-container/32c8376907fc425e8619a8a01985ae4f",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContainerArtifact",
-  "__version": "13.1.0"
+  "__version": "14.0.0"
 }

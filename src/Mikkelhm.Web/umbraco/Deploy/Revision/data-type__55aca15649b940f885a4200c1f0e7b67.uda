@@ -1,6 +1,5 @@
 {
   "Name": "Blog post - References - Multi URL Picker",
-  "Alias": "",
   "EditorAlias": "Umbraco.MultiUrlPicker",
   "Configuration": {
     "minNumber": 0,
@@ -12,5 +11,5 @@
   "Udi": "umb://data-type/55aca15649b940f885a4200c1f0e7b67",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "13.1.0"
+  "__version": "14.0.0"
 }

@@ -1,6 +1,5 @@
 {
   "Name": "List View - astaPhotoGallery",
-  "Alias": "",
   "EditorAlias": "Umbraco.ListView",
   "DatabaseType": "Nvarchar",
   "Configuration": {
@@ -10,41 +9,43 @@
       {
         "alias": "title",
         "header": "Title",
-        "isSystem": 0
+        "nameTemplate": null,
+        "isSystem": false
       },
       {
         "alias": "photo",
         "header": "Photo",
         "nameTemplate": "{{ value }}",
-        "isSystem": 0
+        "isSystem": false
       },
       {
         "alias": "updateDate",
         "header": "Last edited",
-        "isSystem": 1
+        "nameTemplate": null,
+        "isSystem": true
       }
     ],
     "orderBy": "name",
     "layouts": [
       {
         "name": "Grid",
-        "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+        "collectionView": "Umb.CollectionView.Document.Grid",
         "icon": "icon-thumbnails-small",
-        "isSystem": 1,
+        "isSystem": true,
         "selected": false
       },
       {
         "name": "List",
-        "path": "views/propertyeditors/listview/layouts/list/list.html",
+        "collectionView": "Umb.CollectionView.Document.Table",
         "icon": "icon-list",
-        "isSystem": 1,
+        "isSystem": true,
         "selected": false
       },
       {
         "name": "AstaPhotoGallery",
-        "path": "/App_Plugins/AstaPhotoGalleryListView/listview.html",
+        "collectionView": null,
         "icon": "icon-stop",
-        "isSystem": 0,
+        "isSystem": false,
         "selected": true
       }
     ],
@@ -57,10 +58,11 @@
     },
     "icon": "icon-list",
     "showContentFirst": false,
-    "useInfiniteEditor": false
+    "useInfiniteEditor": false,
+    "umbMigrationV14": "2024-05-31T13:08:02.4098365\u002B02:00"
   },
   "Udi": "umb://data-type/26fdbe41a0c34468a9b4f468f3c2cea1",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "13.1.0"
+  "__version": "14.0.0"
 }

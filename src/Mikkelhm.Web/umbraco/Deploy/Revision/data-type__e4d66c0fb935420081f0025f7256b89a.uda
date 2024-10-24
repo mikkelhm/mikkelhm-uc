@@ -1,0 +1,10 @@
+{
+  "Name": "Date Picker with time",
+  "EditorAlias": "Umbraco.DateTime",
+  "DatabaseType": "Date",
+  "Configuration": {},
+  "Udi": "umb://data-type/e4d66c0fb935420081f0025f7256b89a",
+  "Dependencies": [],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
+  "__version": "14.0.0"
+}
