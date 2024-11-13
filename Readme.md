@@ -2,7 +2,7 @@
 
 In order to run Umbraco locally you will need to [install the .NET 7.0 SDK](https://dotnet.microsoft.com/download) (if you do not have this already).
 
-With dotnet installed, run the following commands in your terminal application of choice:
+With dotnet installed, run the following commands in your terminal application of choice:.
 
 ```
 cd src/UmbracoProject
