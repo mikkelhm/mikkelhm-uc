@@ -13,7 +13,7 @@ param(
     
     [Parameter(Position=3)]
     [int] 
-    $TimeoutSeconds = 1200,
+    $TimeoutSeconds = 1800,
 
     [Parameter(Position=4)]    
     [string] 
