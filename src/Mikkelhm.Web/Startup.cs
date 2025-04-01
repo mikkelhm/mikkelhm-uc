@@ -35,6 +35,7 @@ namespace UmbracoProject
                 .AddDeliveryApi()
                 .AddComposers()
                 .Build();
+                
         }
 
         /// <summary>
