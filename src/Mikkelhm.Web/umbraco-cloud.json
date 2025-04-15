@@ -7,12 +7,6 @@
       "Url": "https://www.s1.umbraco.io/project/mikkelhm",
       "Workspaces": [
         {
-          "Id": "268974bc-9159-49a8-9e56-ddffbe2c4bfa",
-          "Name": "Playground",
-          "Type": "playground",
-          "Url": "https://playground-mikkelhm.euwest01.umbraco.io"
-        },
-        {
           "Id": "3f5df02b-c6ee-40d6-8b5e-25182d038284",
           "Name": "Live",
           "Type": "live",
