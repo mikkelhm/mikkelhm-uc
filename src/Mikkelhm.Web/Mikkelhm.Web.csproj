@@ -11,7 +11,7 @@
     <PackageReference Include="Umbraco.Cms" Version="15.4.1" />
     <PackageReference Include="Umbraco.Deploy.Cloud" Version="15.1.0" />
     <PackageReference Include="Umbraco.Deploy.Contrib" Version="15.0.0" />
-    <PackageReference Include="Umbraco.Forms" Version="15.1.1" />
+    <PackageReference Include="Umbraco.Forms" Version="15.1.2" />
     <PackageReference Include="Umbraco.Forms.Deploy" Version="15.1.0" />
   </ItemGroup>
 
