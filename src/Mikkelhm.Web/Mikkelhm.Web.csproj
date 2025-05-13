@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cloud.Cms" Version="15.1.2" />
+    <PackageReference Include="Umbraco.Cloud.Cms" Version="15.1.4" />
     <PackageReference Include="Umbraco.Cloud.StorageProviders.AzureBlob" Version="15.0.0" />
     <PackageReference Include="Umbraco.Cms" Version="15.4.1" />
     <PackageReference Include="Umbraco.Deploy.Cloud" Version="15.1.0" />
