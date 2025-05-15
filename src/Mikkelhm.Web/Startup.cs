@@ -11,7 +11,7 @@ namespace UmbracoProject
         /// <param name="webHostEnvironment">The web hosting environment.</param>
         /// <param name="config">The configuration.</param>
         /// <remarks>
-        /// Only a few services are possible to be injected here https://github.com/dotnet/aspnetcore/issues/9337.
+        /// This is pretty amazing right!
         /// </remarks>
         public Startup(IWebHostEnvironment webHostEnvironment, IConfiguration config)
         {
