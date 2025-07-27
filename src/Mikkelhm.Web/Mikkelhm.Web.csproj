@@ -6,13 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cloud.Cms" Version="15.1.4" />
-    <PackageReference Include="Umbraco.Cloud.StorageProviders.AzureBlob" Version="15.0.0" />
-    <PackageReference Include="Umbraco.Cms" Version="15.4.3" />
-    <PackageReference Include="Umbraco.Deploy.Cloud" Version="15.1.0" />
-    <PackageReference Include="Umbraco.Deploy.Contrib" Version="15.0.0" />
-    <PackageReference Include="Umbraco.Forms" Version="15.2.0" />
-    <PackageReference Include="Umbraco.Forms.Deploy" Version="15.1.0" />
+    <PackageReference Include="Umbraco.Cloud.Cms" Version="16.0.0" />
+    <PackageReference Include="Umbraco.Cloud.StorageProviders.AzureBlob" Version="16.0.0" />
+    <PackageReference Include="Umbraco.Cms" Version="16.1.0" />
+    <PackageReference Include="Umbraco.Deploy.Cloud" Version="16.0.0" />
+    <PackageReference Include="Umbraco.Deploy.Contrib" Version="16.0.0" />
+    <PackageReference Include="Umbraco.Forms" Version="16.0.0" />
+    <PackageReference Include="Umbraco.Forms.Deploy" Version="16.0.0" />
   </ItemGroup>
 
   <ItemGroup>
