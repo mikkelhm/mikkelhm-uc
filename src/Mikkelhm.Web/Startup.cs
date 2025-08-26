@@ -30,7 +30,7 @@ namespace UmbracoProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddUmbraco(_env, _config)
-                .AddBackOffice()
+                .AddBackssOffice()
                 .AddWebsite()
                 .AddDeliveryApi()
                 .AddComposers()
