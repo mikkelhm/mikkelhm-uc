@@ -54,7 +54,7 @@ namespace UmbracoProject
             app.UseUmbraco()
                 .WithMiddleware(u =>
                 {
-                    u.UseBackOffice();
+                    u.UseBackxxxOffice();
                     u.UseWebsite();
                 })
                 .WithEndpoints(u =>

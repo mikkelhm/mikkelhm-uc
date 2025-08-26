@@ -11,14 +11,14 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build: 
-    name: 'Build'
-    uses: ./.github/workflows/build.yml
+  # build: 
+  #   name: 'Build'
+  #   uses: ./.github/workflows/build.yml
 
   cloud-sync:
     if: github.ref_name == 'main'
     name: 'Syncronize changes with Umbraco Cloud'
-    needs: build
+    # needs: build
     uses: ./.github/workflows/cloud-sync.yml
     secrets:
       projectId: ${{ secrets.UMBRACO_CLOUD_PROJECT_ID }}
