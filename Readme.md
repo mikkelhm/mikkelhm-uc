@@ -4,4 +4,4 @@
 
 For further documentation please visit [Umbraco Docs](https://docs.umbraco.com)
 
-Some change
+Some changes
