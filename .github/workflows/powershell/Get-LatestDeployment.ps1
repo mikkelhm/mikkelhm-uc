@@ -10,15 +10,19 @@ param(
 
     [Parameter(Position=2)]
     [string] 
+    $TargetEnvironmentAlias,
+
+    [Parameter(Position=3)]
+    [string] 
     $PipelineVendor, ## GITHUB or AZUREDEVOPS
 
-    [Parameter(Position=3)]    
+    [Parameter(Position=4)]    
     [string] 
     $BaseUrl = "https://api.cloud.umbraco.com"
 )
 
 ### Endpoint docs
-# https://docs.umbraco.com/umbraco-cloud/set-up/project-settings/umbraco-cicd/umbracocloudapi#get-deployments
+# https://docs.umbraco.com/umbraco-cloud/set-up/project-settings/umbraco-cicd/umbracocloudapi/todo-v2
 #
 # We want the Id of the latest deployment that created changes to cloud 
 # Filter deployments
@@ -27,7 +31,8 @@ $Take = 1
 # Exclude cloud null deployments
 $IncludeNullDeployments = $False
 
-$DeploymentUrl = "$BaseUrl/v1/projects/$ProjectId/deployments?skip=$Skip&take=$Take&includenulldeployments=$IncludeNullDeployments"
+
+$DeploymentUrl = "$BaseUrl/v2/projects/$ProjectId/deployments?skip=$Skip&take=$Take&includenulldeployments=$IncludeNullDeployments&targetEnvironmentAlias=$TargetEnvironmentAlias"
 
 $Headers = @{
   'Umbraco-Cloud-Api-Key' = $ApiKey
@@ -40,8 +45,14 @@ try{
 
     if ($Response.StatusCode -eq 200) {
         
-        $JsonResponse = ConvertFrom-Json $([String]::new($response.Content))
-        $latestDeploymentId = $JsonResponse.deployments[0].deploymentId
+        $JsonResponse = ConvertFrom-Json $([String]::new($Response.Content))
+
+        $latestDeploymentId = ''
+
+        if ($JsonResponse.data.Count -gt 0){
+            
+            $latestDeploymentId = $JsonResponse.data[0].id
+        }
 
         ## Write the latest deployment id to the pipelines variables for use in a later step
         switch ($PipelineVendor) {
@@ -50,6 +61,8 @@ try{
             }
             "AZUREDEVOPS" {
                 Write-Host "##vso[task.setvariable variable=latestDeploymentId;isOutput=true]$($latestDeploymentId)"
+                Write-Host "##vso[task.setvariable variable=latestDeploymentId]$($latestDeploymentId)"
+
             }
             "TESTRUN" {
                 Write-Host $PipelineVendor
@@ -80,7 +93,17 @@ try{
     exit 1
 }
 catch {
-    Write-Host "---Error---"
-    Write-Host $_
-    exit 1
+  Write-Host "---Error---"
+  Write-Host "Exception Message: $($_.Exception.Message)"
+  
+  if ($_.ErrorDetails) {
+      Write-Host "API Error Response: $($_.ErrorDetails.Message)"
+  }
+  
+  if ($_.Exception.Response) {
+      $statusCode = $_.Exception.Response.StatusCode.value__
+      Write-Host "HTTP Status Code: $statusCode"
+  }
+  
+  exit 1
 }
