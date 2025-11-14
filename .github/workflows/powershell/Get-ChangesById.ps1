@@ -13,22 +13,26 @@ param(
     $DeploymentId, 
 
     [Parameter(Position=3)]
+    [string] 
+    $TargetEnvironmentAlias,
+
+    [Parameter(Position=4)]
     [string]
     $DownloadFolder,
 
-    [Parameter(Position=4)]
+    [Parameter(Position=5)]
     [string] 
     $PipelineVendor, ## GITHUB or AZUREDEVOPS
 
-    [Parameter(Position=5)]    
+    [Parameter(Position=6)]    
     [string] 
     $BaseUrl = "https://api.cloud.umbraco.com"
 )
 
 ### Endpoint docs
-# https://docs.umbraco.com/umbraco-cloud/set-up/project-settings/umbraco-cicd/umbracocloudapi#get-deployment-diff
-
-$ChangeUrl = "$BaseUrl/v1/projects/$ProjectId/deployments/$DeploymentId/diff"
+# https://docs.umbraco.com/umbraco-cloud/set-up/project-settings/umbraco-cicd/umbracocloudapi/todo-v2
+#
+$ChangeUrl = "$BaseUrl/v2/projects/$ProjectId/deployments/$DeploymentId/diff?targetEnvironmentAlias=$TargetEnvironmentAlias"
 
 $Headers = @{
   'Umbraco-Cloud-Api-Key' = $ApiKey
@@ -89,6 +93,16 @@ try {
 }
 catch {
   Write-Host "---Error---"
-  Write-Host $_
+  Write-Host "Exception Message: $($_.Exception.Message)"
+  
+  if ($_.ErrorDetails) {
+      Write-Host "API Error Response: $($_.ErrorDetails.Message)"
+  }
+  
+  if ($_.Exception.Response) {
+      $statusCode = $_.Exception.Response.StatusCode.value__
+      Write-Host "HTTP Status Code: $statusCode"
+  }
+  
   exit 1
 }
