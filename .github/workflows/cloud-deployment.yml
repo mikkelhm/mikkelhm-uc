@@ -53,7 +53,7 @@ jobs:
         id: requestStartDeployment
         shell: pwsh
         run: >
-          ${{GITHUB.WORKSPACE}}/.github/powershell/Start-Deployment.ps1 
+          ${{GITHUB.WORKSPACE}}/.github/workflows/powershell/Start-Deployment.ps1 
           -ProjectId ${{ secrets.projectId }} 
           -ApiKey ${{ secrets.umbracoCloudApiKey }} 
           -ArtifactId ${{ inputs.artifactId }}
@@ -76,7 +76,7 @@ jobs:
         env: 
           runningDeploymentId: ${{ needs.startDeployment.outputs.runningDeploymentId }}
         run: >
-          ${{GITHUB.WORKSPACE}}/.github/powershell/Test-DeploymentStatus.ps1 
+          ${{GITHUB.WORKSPACE}}/.github/workflows/powershell/Test-DeploymentStatus.ps1 
           -ProjectId ${{ secrets.projectId }} 
           -ApiKey ${{ secrets.umbracoCloudApiKey }}
           -DeploymentId ${{ env.runningDeploymentId }} 

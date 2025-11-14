@@ -50,7 +50,7 @@ jobs:
         id: upload-artifact
         shell: pwsh
         run: >
-          ${{GITHUB.WORKSPACE}}/.github/powershell/Add-DeploymentArtifact.ps1 
+          ${{GITHUB.WORKSPACE}}/.github/workflows/powershell/Add-DeploymentArtifact.ps1 
           -ProjectId ${{ secrets.projectId }} 
           -ApiKey ${{ secrets.umbracoCloudApiKey }} 
           -FilePath ${{ GITHUB.WORKSPACE }}/sources.zip
