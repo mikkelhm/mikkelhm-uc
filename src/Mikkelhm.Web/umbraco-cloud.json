@@ -7,12 +7,6 @@
       "Url": "https://www.s1.umbraco.io/project/mikkelhm",
       "Workspaces": [
         {
-          "Id": "9dc8d59f-b27e-48cf-b1cb-1ea344a19da6",
-          "Name": "Develop",
-          "Type": "develop",
-          "Url": "https://develop-mikkelhm.euwest01.umbraco.io"
-        },
-        {
           "Id": "3f5df02b-c6ee-40d6-8b5e-25182d038284",
           "Name": "Live",
           "Type": "live",
