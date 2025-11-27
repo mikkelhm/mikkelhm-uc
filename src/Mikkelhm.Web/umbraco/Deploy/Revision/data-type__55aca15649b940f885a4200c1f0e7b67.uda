@@ -1,15 +1,16 @@
 {
   "Name": "Blog post - References - Multi URL Picker",
   "EditorAlias": "Umbraco.MultiUrlPicker",
+  "EditorUiAlias": "Umb.PropertyEditorUi.MultiUrlPicker",
   "Configuration": {
     "minNumber": 0,
     "maxNumber": 0,
+    "ignoreUserStartNodes": false,
     "overlaySize": "medium",
-    "hideAnchor": true,
-    "ignoreUserStartNodes": false
+    "hideAnchor": true
   },
   "Udi": "umb://data-type/55aca15649b940f885a4200c1f0e7b67",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "14.0.0"
+  "__version": "17.0.0"
 }
