@@ -7,7 +7,7 @@ param (
     [string]
     $LatestDeploymentId,
     
-    [Parameter(Position=3)]
+    [Parameter(Position=2)]
     [string]
     $PipelineVendor,
 
