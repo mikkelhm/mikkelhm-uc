@@ -23,12 +23,14 @@
       "Ordering": true
     },
     {
-      "Udi": "umb://document-type/77199092b3844af2ac08b5f40d00638a"
+      "Udi": "umb://document-type/77199092b3844af2ac08b5f40d00638a",
+      "Mode": "Exist"
     },
     {
-      "Udi": "umb://document-type/b36551919b1345608bfb3daa8967a11a"
+      "Udi": "umb://document-type/b36551919b1345608bfb3daa8967a11a",
+      "Mode": "Exist"
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "14.0.0"
+  "__version": "17.0.0"
 }

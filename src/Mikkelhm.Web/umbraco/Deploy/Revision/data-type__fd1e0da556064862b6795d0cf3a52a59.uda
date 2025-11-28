@@ -1,10 +1,13 @@
 {
   "Name": "Content Picker",
-  "EditorAlias": "Umbraco.ContentPicker",
-  "DatabaseType": "Nvarchar",
-  "Configuration": {},
+  "EditorAlias": "Umbraco.MultiNodeTreePicker",
+  "EditorUiAlias": "Umb.PropertyEditorUi.ContentPicker",
+  "Configuration": {
+    "minNumber": 0,
+    "maxNumber": 0
+  },
   "Udi": "umb://data-type/fd1e0da556064862b6795d0cf3a52a59",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "14.0.0"
+  "__version": "17.0.0"
 }

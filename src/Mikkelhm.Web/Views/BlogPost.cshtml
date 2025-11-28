@@ -1,6 +1,5 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogPost>
-@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Mikkelhm.Models.BlogPost>
 @{
     Layout = "BlogMaster.cshtml";
 }
@@ -8,7 +7,7 @@
 
     <span class="post-meta">
         <a href="https://www.twitter.com/mikkelhm" target="_blank" title="Mikkelhm on Twitter">Mikkel Holck Madsen</a>
-        <time datetime="@Model.PublishedDate.ToString("yyyy-MM-dd")">@Model.PublishedDate.ToString("dddd, MMMM dd, yyyy")</time>
+        <time datetime="@Model.PublishedDate?.ToString("yyyy-MM-dd")">@Model.PublishedDate?.ToString("dddd, MMMM dd, yyyy")</time>
         @await Html.PartialAsync("Blog/PostTags", Model)
     </span>
 

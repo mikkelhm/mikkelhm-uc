@@ -1,12 +1,13 @@
 {
   "Name": "Label (integer)",
   "EditorAlias": "Umbraco.Label",
-  "DatabaseType": "Integer",
+  "EditorUiAlias": "Umb.PropertyEditorUi.Label",
+  "DatabaseType": "Nvarchar",
   "Configuration": {
     "umbracoDataValueType": "INT"
   },
   "Udi": "umb://data-type/8e7f995cbd8146279932c40e568ec788",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "14.0.0"
+  "__version": "17.0.0"
 }

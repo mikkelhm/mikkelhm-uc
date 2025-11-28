@@ -1,6 +1,7 @@
 {
   "Name": "Blog home - Blog sidebar logo - Media Picker",
   "EditorAlias": "Umbraco.MediaPicker3",
+  "EditorUiAlias": "Umb.PropertyEditorUi.MediaPicker",
   "Configuration": {
     "filter": "cc07b313-0843-4aa8-bbda-871c8da728c8",
     "multiple": false,
@@ -9,8 +10,7 @@
     },
     "startNodeId": "12164ae9-d414-485e-b8d6-3c197bceb73d",
     "enableLocalFocalPoint": false,
-    "ignoreUserStartNodes": false,
-    "umbMigrationV14": "2024-05-31T13:08:02.4201037\u002B02:00"
+    "ignoreUserStartNodes": false
   },
   "Udi": "umb://data-type/dc34b7119e5b4a6da59b79c9f08f338d",
   "Dependencies": [
@@ -24,5 +24,5 @@
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "14.0.0"
+  "__version": "17.0.0"
 }

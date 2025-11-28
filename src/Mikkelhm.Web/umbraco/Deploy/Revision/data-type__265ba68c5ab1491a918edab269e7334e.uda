@@ -1,6 +1,7 @@
 {
   "Name": "Asta Media Picker",
   "EditorAlias": "Umbraco.MediaPicker3",
+  "EditorUiAlias": "Umb.PropertyEditorUi.MediaPicker",
   "Configuration": {
     "filter": "cc07b313-0843-4aa8-bbda-871c8da728c8",
     "multiple": false,
@@ -33,8 +34,7 @@
         "height": 400
       }
     ],
-    "ignoreUserStartNodes": true,
-    "umbMigrationV14": "2024-05-31T13:08:02.4075313\u002B02:00"
+    "ignoreUserStartNodes": true
   },
   "Parent": "umb://data-type-container/32c8376907fc425e8619a8a01985ae4f",
   "Udi": "umb://data-type/265ba68c5ab1491a918edab269e7334e",
@@ -53,5 +53,5 @@
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "14.0.0"
+  "__version": "17.0.0"
 }

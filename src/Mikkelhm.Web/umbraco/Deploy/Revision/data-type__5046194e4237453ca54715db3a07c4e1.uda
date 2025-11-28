@@ -1,12 +1,10 @@
 {
   "Name": "Date Picker",
-  "EditorAlias": "Umbraco.DateTime",
-  "DatabaseType": "Date",
-  "Configuration": {
-    "format": "YYYY-MM-DD"
-  },
+  "EditorAlias": "Umbraco.DateOnly",
+  "EditorUiAlias": "Umb.PropertyEditorUi.DateOnlyPicker",
+  "Configuration": {},
   "Udi": "umb://data-type/5046194e4237453ca54715db3a07c4e1",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "14.0.0"
+  "__version": "17.0.0"
 }

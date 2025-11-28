@@ -1,11 +1,9 @@
 {
   "Name": "List View - Members",
   "EditorAlias": "Umbraco.ListView",
+  "EditorUiAlias": "Umb.PropertyEditorUi.Collection",
   "DatabaseType": "Nvarchar",
   "Configuration": {
-    "pageSize": 10,
-    "orderBy": "username",
-    "orderDirection": "asc",
     "includeProperties": [
       {
         "alias": "username",
@@ -42,20 +40,14 @@
         "selected": true
       }
     ],
-    "bulkActionPermissions": {
-      "allowBulkPublish": true,
-      "allowBulkUnpublish": true,
-      "allowBulkCopy": true,
-      "allowBulkMove": true,
-      "allowBulkDelete": true
-    },
+    "orderBy": "username",
+    "orderDirection": "asc",
+    "pageSize": 10,
     "icon": "icon-badge color-black",
-    "showContentFirst": false,
-    "useInfiniteEditor": false,
-    "umbMigrationV14": "2024-05-31T13:08:02.3712484\u002B02:00"
+    "showContentFirst": false
   },
   "Udi": "umb://data-type/aa2c52a0ce874e65a47c7df09358585d",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "14.0.0"
+  "__version": "17.0.0"
 }

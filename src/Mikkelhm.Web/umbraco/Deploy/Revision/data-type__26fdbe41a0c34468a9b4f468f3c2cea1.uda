@@ -1,10 +1,9 @@
 {
   "Name": "List View - astaPhotoGallery",
   "EditorAlias": "Umbraco.ListView",
+  "EditorUiAlias": "Umb.PropertyEditorUi.Collection",
   "DatabaseType": "Nvarchar",
   "Configuration": {
-    "pageSize": 10,
-    "orderDirection": "asc",
     "includeProperties": [
       {
         "alias": "title",
@@ -25,7 +24,6 @@
         "isSystem": true
       }
     ],
-    "orderBy": "name",
     "layouts": [
       {
         "name": "Grid",
@@ -49,20 +47,14 @@
         "selected": true
       }
     ],
-    "bulkActionPermissions": {
-      "allowBulkPublish": true,
-      "allowBulkUnpublish": true,
-      "allowBulkCopy": true,
-      "allowBulkMove": true,
-      "allowBulkDelete": true
-    },
+    "orderBy": "name",
+    "orderDirection": "asc",
+    "pageSize": 10,
     "icon": "icon-list",
-    "showContentFirst": false,
-    "useInfiniteEditor": false,
-    "umbMigrationV14": "2024-05-31T13:08:02.4098365\u002B02:00"
+    "showContentFirst": false
   },
   "Udi": "umb://data-type/26fdbe41a0c34468a9b4f468f3c2cea1",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "14.0.0"
+  "__version": "17.0.0"
 }

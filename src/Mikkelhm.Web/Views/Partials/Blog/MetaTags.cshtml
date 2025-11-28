@@ -1,7 +1,6 @@
 ﻿@using Umbraco.Cms.Core.Models;
 @using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
-@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
     var title = Model.Value("metaTitle", fallback: Fallback.ToDefaultValue, defaultValue: Model.Name);
     var description = Model.Value("metaDescription", fallback: Fallback.ToDefaultValue, defaultValue: Model.Name);

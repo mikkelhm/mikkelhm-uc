@@ -23,34 +23,10 @@
           "Name": "Image"
         },
         {
-          "Key": "00000007-0000-0000-0000-000000000000",
-          "Alias": "umbracoWidth",
-          "DataType": "umb://data-type/8e7f995cbd8146279932c40e568ec788",
-          "Description": "in pixels",
-          "Name": "Width",
-          "SortOrder": 1
-        },
-        {
-          "Key": "00000008-0000-0000-0000-000000000000",
-          "Alias": "umbracoHeight",
-          "DataType": "umb://data-type/8e7f995cbd8146279932c40e568ec788",
-          "Description": "in pixels",
-          "Name": "Height",
-          "SortOrder": 2
-        },
-        {
-          "Key": "00000009-0000-0000-0000-000000000000",
-          "Alias": "umbracoBytes",
-          "DataType": "umb://data-type/930861bfe2624eada704f99453565708",
-          "Description": "in bytes",
-          "Name": "Size",
-          "SortOrder": 3
-        },
-        {
           "Key": "0000000a-0000-0000-0000-000000000000",
           "Alias": "umbracoExtension",
           "DataType": "umb://data-type/f0bc4bfbb49940d6ba86058885a5178c",
-          "Name": "Type",
+          "Name": "File extension",
           "SortOrder": 4
         }
       ]
@@ -64,18 +40,10 @@
       "Ordering": true
     },
     {
-      "Udi": "umb://data-type/8e7f995cbd8146279932c40e568ec788",
-      "Ordering": true
-    },
-    {
-      "Udi": "umb://data-type/930861bfe2624eada704f99453565708",
-      "Ordering": true
-    },
-    {
       "Udi": "umb://data-type/f0bc4bfbb49940d6ba86058885a5178c",
       "Ordering": true
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.MediaTypeArtifact",
-  "__version": "14.0.0"
+  "__version": "17.0.0"
 }
