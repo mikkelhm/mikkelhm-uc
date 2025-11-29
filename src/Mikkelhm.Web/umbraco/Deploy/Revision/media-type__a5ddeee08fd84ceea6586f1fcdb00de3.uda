@@ -28,13 +28,6 @@
           "DataType": "umb://data-type/f0bc4bfbb49940d6ba86058885a5178c",
           "Name": "File extension",
           "SortOrder": 1
-        },
-        {
-          "Key": "0000002d-0000-0000-0000-000000000000",
-          "Alias": "umbracoBytes",
-          "DataType": "umb://data-type/ba5bdbe6ab3e46a882b32c45f10bc47f",
-          "Name": "File size",
-          "SortOrder": 2
         }
       ]
     }
@@ -44,10 +37,6 @@
   "Dependencies": [
     {
       "Udi": "umb://data-type/8f430dd64e96447e9dc0cb552c8cd1f3",
-      "Ordering": true
-    },
-    {
-      "Udi": "umb://data-type/ba5bdbe6ab3e46a882b32c45f10bc47f",
       "Ordering": true
     },
     {
