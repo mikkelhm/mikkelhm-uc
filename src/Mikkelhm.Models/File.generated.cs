@@ -50,13 +50,6 @@ namespace Mikkelhm.Models
 		// properties
 
 		///<summary>
-		/// File size
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.0.0+da502e0")]
-		[ImplementPropertyType("umbracoBytes")]
-		public virtual long UmbracoBytes => this.Value<long>(_publishedValueFallback, "umbracoBytes");
-
-		///<summary>
 		/// File extension
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.0.0+da502e0")]
