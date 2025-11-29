@@ -1,10 +1,9 @@
 {
   "Name": "List View - blogPostRepository",
   "EditorAlias": "Umbraco.ListView",
+  "EditorUiAlias": "Umb.PropertyEditorUi.Collection",
   "DatabaseType": "Nvarchar",
   "Configuration": {
-    "pageSize": 20,
-    "orderDirection": "desc",
     "includeProperties": [
       {
         "alias": "publishedDate",
@@ -25,7 +24,6 @@
         "isSystem": true
       }
     ],
-    "orderBy": "publishedDate",
     "layouts": [
       {
         "name": "List",
@@ -42,20 +40,14 @@
         "selected": false
       }
     ],
-    "bulkActionPermissions": {
-      "allowBulkPublish": true,
-      "allowBulkUnpublish": true,
-      "allowBulkCopy": true,
-      "allowBulkMove": true,
-      "allowBulkDelete": true
-    },
+    "orderBy": "publishedDate",
+    "orderDirection": "desc",
+    "pageSize": 20,
     "icon": "icon-list",
-    "showContentFirst": false,
-    "useInfiniteEditor": false,
-    "umbMigrationV14": "2024-05-31T13:08:02.4197956\u002B02:00"
+    "showContentFirst": false
   },
   "Udi": "umb://data-type/9fea27f93228458699bc1e04e51bb54a",
   "Dependencies": [],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
-  "__version": "14.0.0"
+  "__version": "17.0.0"
 }

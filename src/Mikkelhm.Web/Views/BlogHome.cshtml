@@ -1,10 +1,10 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogHome>
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Mikkelhm.Models.BlogHome>
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
-@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
 @{
     Layout = "BlogMaster.cshtml";
-    var children = Model.Children<ContentModels.BlogPostRepository>().First().Children<ContentModels.BlogPost>();
+    var children = Model.Children<Mikkelhm.Models.BlogPostRepository>().First().Children<Mikkelhm.Models.BlogPost>();
     var filter = HttpContextAccessor.HttpContext.Request.Query["t"];
     if(!string.IsNullOrWhiteSpace(filter))
         children = children.Where(x => x.Tags == null || x.Tags.Any(y => y == filter));
@@ -23,8 +23,8 @@
             <article class="post tag-ghost-tag">
                 <header class="post-header">
                     <span class="post-meta">
-                        <time datetime="@post.PublishedDate.ToString("yyyy-MM-dd")">
-                            @post.PublishedDate.ToString("dddd, MMMM dd, yyyy")
+                        <time datetime="@post.PublishedDate?.ToString("yyyy-MM-dd")">
+                            @post.PublishedDate?.ToString("dddd, MMMM dd, yyyy")
                         </time>
                         @await Html.PartialAsync("Blog/PostTags", post)
                     </span>

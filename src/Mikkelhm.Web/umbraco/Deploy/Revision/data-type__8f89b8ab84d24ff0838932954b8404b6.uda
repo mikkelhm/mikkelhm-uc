@@ -47,13 +47,10 @@
       "Umb.Tiptap.Strike",
       "Umb.Tiptap.Subscript",
       "Umb.Tiptap.Superscript",
-      "Umb.Tiptap.Table",
-      "Umb.Tiptap.TextAlign",
-      "Umb.Tiptap.TextDirection",
       "Umb.Tiptap.TextIndent",
-      "Umb.Tiptap.TrailingNode",
+      "Umb.Tiptap.Table",
       "Umb.Tiptap.Underline",
-      "Umb.Tiptap.WordCount"
+      "Umb.Tiptap.TextAlign"
     ]
   },
   "Udi": "umb://data-type/8f89b8ab84d24ff0838932954b8404b6",

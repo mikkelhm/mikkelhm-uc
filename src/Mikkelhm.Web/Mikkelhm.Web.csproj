@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Umbraco.Cloud.Cms" Version="17.0.0" />
+    <PackageReference Include="Umbraco.Cms.DevelopmentMode.Backoffice" Version="17.0.0" />
     <PackageReference Include="Umbraco.Cloud.StorageProviders.AzureBlob" Version="17.0.0" />
     <PackageReference Include="Umbraco.Cms" Version="17.0.0" />
     <PackageReference Include="Umbraco.Deploy.Cloud" Version="17.0.0" />
@@ -33,6 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mikkelhm.Core\Mikkelhm.Core.csproj" />
+    <ProjectReference Include="..\Mikkelhm.Models\Mikkelhm.Models.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
