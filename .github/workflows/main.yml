@@ -30,7 +30,7 @@ jobs:
     if: github.ref_name == 'main'
     name: 'Prepare and Upload Artifact'
     needs: build
-    needs: cloud-sync
+    # needs: cloud-sync
     uses: ./.github/workflows/cloud-artifact.yml
     with:
       newSha: ${{ needs.cloud-sync.outputs.newSha }}
