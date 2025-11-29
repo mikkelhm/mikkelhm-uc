@@ -6,7 +6,7 @@
     "umb://template/eb8a1f9abc1d43fb8c3f4660f7b63c12"
   ],
   "HistoryCleanup": {},
-  "Icon": "icon-bird color-blue",
+  "Icon": "icon-bird color-text",
   "Thumbnail": "folder.png",
   "Permissions": {
     "AllowedChildContentTypes": [
