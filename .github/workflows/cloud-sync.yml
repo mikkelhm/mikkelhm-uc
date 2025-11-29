@@ -115,10 +115,10 @@ jobs:
         shell: pwsh
         run: >
           ${{GITHUB.WORKSPACE}}/.github/workflows/powershell/Apply-Patch.ps1
-          -PatchFile ${{ GITHUB.WORKSPACE }}/patch/git-patch.diff 
-          -LatestDeploymentId ${{ env.latestDeploymentId }} 
-          -PipelineVendor GITHUB
-          -GitUserName ${{ env.gitName }}
-          -GitUserEmail ${{ env.gitEmail }}
+          -PatchFile "${{ GITHUB.WORKSPACE }}/patch/git-patch.diff"
+          -LatestDeploymentId "${{ env.latestDeploymentId }}"
+          -PipelineVendor "GITHUB"
+          -GitUserName "${{ env.gitName }}"
+          -GitUserEmail "${{ env.gitEmail }}"
     outputs:
       newSha: ${{ steps.update-bundle.outputs.updatedSha }}
