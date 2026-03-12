@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.Models;
@@ -35,10 +37,13 @@ public class EllabmApiController : ControllerBase
     }
 
     [HttpPost("upload")]
+    [IgnoreAntiforgeryToken]
     public IActionResult Upload([FromForm] IFormFile photo, [FromForm] string? uploaderName)
     {
-        var password = Request.Headers["X-Ellabm-Password"].FirstOrDefault();
-        if (password != Password)
+        var password = Request.Headers["X-Ellabm-Password"].FirstOrDefault() ?? "";
+        if (!CryptographicOperations.FixedTimeEquals(
+                Encoding.UTF8.GetBytes(password),
+                Encoding.UTF8.GetBytes(Password)))
         {
             return Unauthorized(new { error = "Invalid password" });
         }

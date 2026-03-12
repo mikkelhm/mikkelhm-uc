@@ -99,8 +99,19 @@
         }
     }
 
+    function clearPreviews() {
+        // Revoke object URLs before clearing to prevent memory leaks
+        var images = previewArea.querySelectorAll('img');
+        images.forEach(function (img) {
+            if (img.src.startsWith('blob:')) URL.revokeObjectURL(img.src);
+        });
+        while (previewArea.firstChild) {
+            previewArea.removeChild(previewArea.firstChild);
+        }
+    }
+
     function renderPreviews() {
-        previewArea.innerHTML = '';
+        clearPreviews();
         previewArea.classList.remove('hidden');
 
         selectedFiles.forEach(function (file, idx) {
@@ -109,7 +120,8 @@
             item.id = 'preview-' + idx;
 
             var img = document.createElement('img');
-            img.src = URL.createObjectURL(file);
+            var objectUrl = URL.createObjectURL(file);
+            img.src = objectUrl;
             item.appendChild(img);
 
             var removeBtn = document.createElement('button');
@@ -129,7 +141,9 @@
     function resizeImage(file) {
         return new Promise(function (resolve) {
             var img = new Image();
+            var objectUrl = URL.createObjectURL(file);
             img.onload = function () {
+                URL.revokeObjectURL(objectUrl);
                 var w = img.width;
                 var h = img.height;
 
@@ -156,7 +170,7 @@
                     resolve(resized);
                 }, 'image/jpeg', 0.85);
             };
-            img.src = URL.createObjectURL(file);
+            img.src = objectUrl;
         });
     }
 
@@ -236,7 +250,7 @@
 
         // Clear previews after a delay
         setTimeout(function () {
-            previewArea.innerHTML = '';
+            clearPreviews();
             previewArea.classList.add('hidden');
             progressArea.classList.add('hidden');
             progressFill.style.width = '0%';
