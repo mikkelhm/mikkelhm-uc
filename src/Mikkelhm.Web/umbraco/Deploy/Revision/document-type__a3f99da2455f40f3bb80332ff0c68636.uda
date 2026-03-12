@@ -1,0 +1,60 @@
+{
+  "Name": "EllabmHome",
+  "Alias": "ellabmHome",
+  "AllowedTemplates": [],
+  "HistoryCleanup": {},
+  "Icon": "icon-camera",
+  "Thumbnail": "folder.png",
+  "Permissions": {
+    "AllowedChildContentTypes": [
+      "umb://document-type/7574b92e9e1c4539a3c78b1079f5d477"
+    ]
+  },
+  "Parent": "umb://document-type-container/78f07e2e57ba4268a27e391a65af09a8",
+  "CompositionContentTypes": [],
+  "PropertyGroups": [
+    {
+      "Key": "50b3b447-687f-4cda-adf1-112d8adea6bb",
+      "Name": "Content",
+      "Type": 1,
+      "Alias": "content",
+      "PropertyTypes": [
+        {
+          "Key": "9dc768a9-d803-4b11-997a-0c04aba45ca0",
+          "Alias": "headline",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "Name": "Headline"
+        },
+        {
+          "Key": "b376bdcc-16f4-4fcd-bedb-5b18f5d7a34f",
+          "Alias": "body",
+          "DataType": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
+          "Name": "Body",
+          "SortOrder": 1
+        }
+      ]
+    }
+  ],
+  "PropertyTypes": [],
+  "Udi": "umb://document-type/a3f99da2455f40f3bb80332ff0c68636",
+  "Dependencies": [
+    {
+      "Udi": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://document-type-container/78f07e2e57ba4268a27e391a65af09a8",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://document-type/7574b92e9e1c4539a3c78b1079f5d477",
+      "Mode": "Exist"
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
+  "__version": "17.0.2"
+}
