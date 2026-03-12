@@ -1,9 +1,12 @@
 {
   "Name": "EllabmHome",
   "Alias": "ellabmHome",
-  "AllowedTemplates": [],
+  "DefaultTemplate": "umb://template/f2a5a221f5be461780c14063f235d107",
+  "AllowedTemplates": [
+    "umb://template/f2a5a221f5be461780c14063f235d107"
+  ],
   "HistoryCleanup": {},
-  "Icon": "icon-camera",
+  "Icon": "icon-brush color-text",
   "Thumbnail": "folder.png",
   "Permissions": {
     "AllowedChildContentTypes": [
@@ -52,6 +55,11 @@
     },
     {
       "Udi": "umb://document-type/7574b92e9e1c4539a3c78b1079f5d477",
+      "Mode": "Exist"
+    },
+    {
+      "Udi": "umb://template/f2a5a221f5be461780c14063f235d107",
+      "Ordering": true,
       "Mode": "Exist"
     }
   ],
