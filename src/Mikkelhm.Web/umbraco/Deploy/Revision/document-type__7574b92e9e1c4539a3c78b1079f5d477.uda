@@ -1,0 +1,43 @@
+{
+  "Name": "EllabmGallery",
+  "Alias": "ellabmGallery",
+  "AllowedTemplates": [],
+  "HistoryCleanup": {},
+  "Icon": "icon-slideshow",
+  "Thumbnail": "folder.png",
+  "Permissions": {
+    "AllowedChildContentTypes": []
+  },
+  "Parent": "umb://document-type-container/78f07e2e57ba4268a27e391a65af09a8",
+  "CompositionContentTypes": [],
+  "PropertyGroups": [
+    {
+      "Key": "8b44db61-56a6-4fd5-bfd5-90010f3df426",
+      "Name": "Content",
+      "Type": 1,
+      "Alias": "content",
+      "PropertyTypes": [
+        {
+          "Key": "6cba4144-f4bb-4691-acd9-82e5dbdfd563",
+          "Alias": "slideDuration",
+          "DataType": "umb://data-type/2e6d3631066e44b8aec496f09099b2b5",
+          "Name": "Slide Duration"
+        }
+      ]
+    }
+  ],
+  "PropertyTypes": [],
+  "Udi": "umb://document-type/7574b92e9e1c4539a3c78b1079f5d477",
+  "Dependencies": [
+    {
+      "Udi": "umb://data-type/2e6d3631066e44b8aec496f09099b2b5",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://document-type-container/78f07e2e57ba4268a27e391a65af09a8",
+      "Ordering": true
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
+  "__version": "17.0.2"
+}

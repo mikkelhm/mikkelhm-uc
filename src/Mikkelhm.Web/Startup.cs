@@ -61,6 +61,7 @@ namespace UmbracoProject
                 {
                     u.UseBackOfficeEndpoints();
                     u.UseWebsiteEndpoints();
+                    u.EndpointRouteBuilder.MapControllers();
                 });
         }
     }

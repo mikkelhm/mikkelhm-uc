@@ -1,0 +1,36 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Mikkelhm.Models.EllabmGallery>
+@{
+    Layout = null;
+    var slideDuration = Model.SlideDuration > 0 ? Model.SlideDuration : 8;
+}
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Galleri - Ellas Fest</title>
+    <link rel="stylesheet" href="/ellabm/assets/css/gallery.css" />
+</head>
+<body>
+    <div id="slideshow">
+        <div id="slide-container">
+            <img id="slide-current" class="slide active" src="" alt="" />
+            <img id="slide-next" class="slide" src="" alt="" />
+        </div>
+        <div id="photo-info">
+            <span id="photo-name"></span>
+        </div>
+        <div id="no-photos">
+            <h1>📸</h1>
+            <p>Venter på billeder...</p>
+        </div>
+    </div>
+
+    <script>
+        window.ELLABM_CONFIG = {
+            slideDuration: @slideDuration
+        };
+    </script>
+    <script src="/ellabm/assets/js/gallery.js"></script>
+</body>
+</html>

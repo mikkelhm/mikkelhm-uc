@@ -1,0 +1,15 @@
+{
+  "Name": "Ellabm Home",
+  "Alias": "EllabmHome",
+  "File": "umb://template-file/EllabmHome.cshtml",
+  "Udi": "umb://template/f2a5a221f5be461780c14063f235d107",
+  "Dependencies": [
+    {
+      "Udi": "umb://template-file/EllabmHome.cshtml",
+      "Ordering": true,
+      "Mode": "Exist"
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.TemplateArtifact",
+  "__version": "17.0.0"
+}

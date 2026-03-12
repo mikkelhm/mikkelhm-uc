@@ -1,0 +1,15 @@
+{
+  "Name": "Ellabm Gallery",
+  "Alias": "EllabmGallery",
+  "File": "umb://template-file/EllabmGallery.cshtml",
+  "Udi": "umb://template/821bdf2fec9f4157827a545b55b7f572",
+  "Dependencies": [
+    {
+      "Udi": "umb://template-file/EllabmGallery.cshtml",
+      "Ordering": true,
+      "Mode": "Exist"
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.TemplateArtifact",
+  "__version": "17.0.0"
+}

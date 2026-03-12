@@ -1,0 +1,97 @@
+/* Ellabm Gallery - Fullscreen Slideshow */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    cursor: none;
+}
+
+#slideshow {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#slide-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+#photo-info {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+#photo-info.visible {
+    opacity: 1;
+}
+
+#photo-name {
+    display: inline-block;
+    padding: 10px 24px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    backdrop-filter: blur(10px);
+}
+
+#no-photos {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+#no-photos h1 {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+#no-photos p {
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+#no-photos.hidden {
+    display: none;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
