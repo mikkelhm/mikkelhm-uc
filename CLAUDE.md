@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an Umbraco Cloud CMS project built with .NET 9.0. The solution consists of:
+This is an Umbraco Cloud CMS project built with .NET 10.0. The solution consists of:
 
 - **Mikkelhm.Web** - Main web application with Umbraco CMS integration
 - **Mikkelhm.Core** - Core library containing components, composers, and frontend helpers
 
-The project uses Umbraco CMS v16.1.1 with Umbraco Cloud v16.0.0, Deploy, and Forms packages for content management and deployment.
+The project uses Umbraco CMS v17.2.2 with Umbraco Cloud v17.0.0, Deploy, and Forms packages for content management and deployment.
 
 ## Common Development Commands
 
@@ -66,6 +66,7 @@ The solution has two primary projects with a clear separation of concerns:
 ### Frontend Assets
 - `wwwroot/asta/` - Asta theme with SCSS assets
 - `wwwroot/blog/` - Blog theme assets
+- `wwwroot/ellabm/` - Ellabm party photo subsite (upload + gallery slideshow)
 - `wwwroot/media/` - Media storage
 - `App_Plugins/AstaPhotoGalleryListView/` - Custom photo gallery list view plugin
 - `App_Plugins/UmbracoId/` - UmbracoId authentication plugin
@@ -78,8 +79,29 @@ The solution has two primary projects with a clear separation of concerns:
 - **Serilog**: Minimum level Information, overrides for Microsoft (Warning) and System (Warning)
 
 ### Important Technical Details
-- **.NET 9.0** with nullable reference types enabled
+- **.NET 10.0** with nullable reference types enabled
 - **Database**: SQLite for local development (`umbraco/Data/Umbraco.sqlite.db`)
 - **Umbraco Cloud**: Deployment artifacts stored in `umbraco/Deploy/`
 - **ICU Globalization**: Uses app-local ICU4C runtime (version 72.1.0.3) for consistent globalization across platforms
 - **Razor Compilation**: Disabled for build but Razor files copied to publish directory for backoffice functionality
+
+## Umbraco MCP Workflow Tips
+
+When using the Umbraco MCP tools to create document types and content, follow this order:
+
+1. **Create document type folder** (if needed)
+2. **Create document types** with properties
+3. **Create templates** (`create-template`) — must exist before content is created
+4. **Update document types** to set `allowedTemplates` and `defaultTemplate`
+5. **Update document types** for allowed children relationships
+6. **Create content nodes** — they inherit the default template at creation time
+7. **Publish content nodes**
+
+If content was created before templates were linked, the content node gets `template: null` and won't render. Fix by using `update-document` to set the template, then re-publish.
+
+### Package Boundaries for Controllers
+- **Mikkelhm.Core** only references `Umbraco.Cms.Core` — no media file upload extensions (`SetValue` with `MediaFileManager`), no `MediaUrlGeneratorCollection`
+- **Mikkelhm.Web** references the full `Umbraco.Cms` meta-package — place API controllers that need media/infrastructure APIs here
+
+### Deploy Artifacts
+When document types, templates, or content structure changes are made via MCP tools or the backoffice, Umbraco Deploy auto-updates `.uda` files in `umbraco/Deploy/Revision/`. These must be committed alongside code changes.
