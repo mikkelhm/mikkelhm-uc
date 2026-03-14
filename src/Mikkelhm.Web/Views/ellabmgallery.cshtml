@@ -12,19 +12,39 @@
     <link rel="stylesheet" href="/ellabm/assets/css/gallery.css" />
 </head>
 <body>
-    <div id="slideshow">
-        <div id="slide-container">
-            <img id="slide-current" class="slide active" src="" alt="" />
-            <img id="slide-next" class="slide" src="" alt="" />
-        </div>
-        <div id="photo-info">
-            <span id="photo-name"></span>
-        </div>
-        <div id="no-photos">
-            <h1>📸</h1>
-            <p>Venter på billeder...</p>
-        </div>
+    <div id="gallery-layout">
+        <aside id="info-sidebar">
+            <div id="sidebar-content">
+                <div id="sidebar-emoji">📸</div>
+                <h2>Del dine billeder!</h2>
+                <p>Gå til</p>
+                <div id="sidebar-url">www.ellabm.dk</div>
+                <p>og indtast koden</p>
+                <div id="sidebar-code">2026</div>
+            </div>
+        </aside>
+        <main id="slideshow">
+            <div id="slide-container">
+                <img id="slide-current" class="slide active" src="" alt="" />
+                <img id="slide-next" class="slide" src="" alt="" />
+                <div id="polaroid-frame" class="hidden">
+                    <div id="polaroid-inner">
+                        <img id="polaroid-img" src="" alt="" />
+                        <div id="polaroid-caption"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="photo-info">
+                <span id="photo-name"></span>
+            </div>
+            <div id="no-photos">
+                <h1>📸</h1>
+                <p>Venter på billeder...</p>
+            </div>
+        </main>
     </div>
+
+    <button id="mode-toggle" title="Skift visning">🖼️</button>
 
     <script>
         window.ELLABM_CONFIG = {
