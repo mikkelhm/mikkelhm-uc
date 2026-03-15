@@ -14,6 +14,7 @@ namespace Mikkelhm.Web.Controllers;
 public class EllabmApiController : ControllerBase
 {
     private const string Password = "2026";
+    private const string AdminPassword = "Mikkel2026";
     private const string MediaFolderName = "Ellabm Photos";
 
     private readonly IMediaService _mediaService;
@@ -119,6 +120,7 @@ public class EllabmApiController : ControllerBase
 
                 return new
                 {
+                    id = m.Id,
                     url,
                     name = m.Name,
                     date = m.CreateDate.ToString("O")
@@ -127,6 +129,40 @@ public class EllabmApiController : ControllerBase
             .ToList();
 
         return Ok(photos);
+    }
+
+    [HttpDelete("photos/{id:int}")]
+    [IgnoreAntiforgeryToken]
+    public IActionResult DeletePhoto(int id)
+    {
+        var password = Request.Headers["X-Ellabm-Password"].FirstOrDefault() ?? "";
+        if (!CryptographicOperations.FixedTimeEquals(
+                Encoding.UTF8.GetBytes(password),
+                Encoding.UTF8.GetBytes(AdminPassword)))
+        {
+            return Unauthorized(new { error = "Invalid password" });
+        }
+
+        var media = _mediaService.GetById(id);
+        if (media == null)
+        {
+            return NotFound(new { error = "Photo not found" });
+        }
+
+        // Only allow deleting images inside our folder
+        var folder = FindMediaFolder();
+        if (folder == null || media.ParentId != folder.Id)
+        {
+            return BadRequest(new { error = "Photo does not belong to Ellabm" });
+        }
+
+        var result = _mediaService.Delete(media);
+        if (!result.Success)
+        {
+            return StatusCode(500, new { error = "Failed to delete photo" });
+        }
+
+        return Ok(new { success = true });
     }
 
     private IMedia? FindMediaFolder()
