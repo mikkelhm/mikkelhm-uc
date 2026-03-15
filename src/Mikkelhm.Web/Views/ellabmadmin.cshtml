@@ -1,0 +1,415 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin - Ellas Fest</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #FFFDE7;
+            color: #3a2e1a;
+            min-height: 100vh;
+        }
+
+        /* --- Password gate --- */
+        #password-gate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        #password-gate.hidden { display: none; }
+
+        .gate-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 360px;
+            width: 100%;
+        }
+
+        .gate-card h1 { font-size: 2.5rem; margin-bottom: 12px; }
+        .gate-card p { font-size: 1rem; color: #6b5e4a; margin-bottom: 20px; }
+
+        .gate-card input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1.1rem;
+            border: 2px solid #e0d6c2;
+            border-radius: 10px;
+            text-align: center;
+            outline: none;
+        }
+
+        .gate-card input:focus { border-color: #FFD700; }
+
+        .gate-card button {
+            margin-top: 14px;
+            width: 100%;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: #FFD700;
+            color: #3a2e1a;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .gate-card .error {
+            color: #d32f2f;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* --- Admin content --- */
+        #admin { display: none; }
+        #admin.visible { display: block; }
+
+        header {
+            background: linear-gradient(135deg, #FFD700, #FFECB3);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header h1 { font-size: 1.3rem; }
+        #photo-count { font-size: 0.9rem; color: #5a4e2e; }
+
+        #photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            padding: 16px;
+        }
+
+        .photo-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: relative;
+        }
+
+        .photo-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-card .info {
+            padding: 8px 10px;
+            font-size: 0.8rem;
+            color: #5a4e2e;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .photo-card .delete-btn {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(211, 47, 47, 0.85);
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .photo-card .delete-btn:hover { opacity: 1; }
+
+        /* --- Delete confirmation --- */
+        #confirm-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        #confirm-overlay.visible {
+            display: flex;
+        }
+
+        .confirm-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 340px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .confirm-card img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .confirm-card p {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #3a2e1a;
+        }
+
+        .confirm-card .name {
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .confirm-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .confirm-buttons button {
+            flex: 1;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .btn-cancel {
+            background: #e8e0d0;
+            color: #3a2e1a;
+        }
+
+        .btn-delete {
+            background: #d32f2f;
+            color: #fff;
+        }
+
+        .btn-delete:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #8a7e6a;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="password-gate">
+        <div class="gate-card">
+            <h1>🔒</h1>
+            <p>Admin adgang</p>
+            <input type="password" id="gate-password" placeholder="Adgangskode" />
+            <button id="gate-submit">Log ind</button>
+            <p class="error" id="gate-error">Forkert adgangskode</p>
+        </div>
+    </div>
+
+    <div id="admin">
+        <header>
+            <h1>Foto admin</h1>
+            <span id="photo-count"></span>
+        </header>
+        <div id="empty-state" style="display:none;">Ingen billeder endnu</div>
+        <div id="photo-grid"></div>
+    </div>
+
+    <div id="confirm-overlay">
+        <div class="confirm-card">
+            <img id="confirm-img" src="" alt="" />
+            <p>Slet dette billede?</p>
+            <p class="name" id="confirm-name"></p>
+            <div class="confirm-buttons">
+                <button class="btn-cancel" id="confirm-cancel">Annuller</button>
+                <button class="btn-delete" id="confirm-delete">Slet</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (function () {
+        'use strict';
+
+        var API_PHOTOS = '/umbraco/api/ellabm/photos';
+        var AUTH_KEY = 'ellabm_admin_auth';
+
+        var gate = document.getElementById('password-gate');
+        var gatePassword = document.getElementById('gate-password');
+        var gateSubmit = document.getElementById('gate-submit');
+        var gateError = document.getElementById('gate-error');
+        var admin = document.getElementById('admin');
+        var photoGrid = document.getElementById('photo-grid');
+        var photoCount = document.getElementById('photo-count');
+        var emptyState = document.getElementById('empty-state');
+
+        var overlay = document.getElementById('confirm-overlay');
+        var confirmImg = document.getElementById('confirm-img');
+        var confirmName = document.getElementById('confirm-name');
+        var confirmCancel = document.getElementById('confirm-cancel');
+        var confirmDelete = document.getElementById('confirm-delete');
+
+        var password = localStorage.getItem(AUTH_KEY) || '';
+        var pendingDeleteId = null;
+
+        // Auto-login if stored
+        if (password) {
+            gate.classList.add('hidden');
+            admin.classList.add('visible');
+            loadPhotos();
+        }
+
+        gateSubmit.addEventListener('click', function () {
+            password = gatePassword.value;
+            if (!password) return;
+            localStorage.setItem(AUTH_KEY, password);
+            gate.classList.add('hidden');
+            admin.classList.add('visible');
+            loadPhotos();
+        });
+
+        gatePassword.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') gateSubmit.click();
+        });
+
+        function loadPhotos() {
+            fetch(API_PHOTOS)
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    renderPhotos(data || []);
+                })
+                .catch(function () {
+                    photoGrid.innerHTML = '<p style="padding:20px;color:#d32f2f;">Kunne ikke hente billeder</p>';
+                });
+        }
+
+        function renderPhotos(photos) {
+            photoCount.textContent = photos.length + ' billeder';
+            if (photos.length === 0) {
+                emptyState.style.display = 'block';
+                photoGrid.innerHTML = '';
+                return;
+            }
+            emptyState.style.display = 'none';
+
+            photoGrid.innerHTML = '';
+            photos.forEach(function (p) {
+                var card = document.createElement('div');
+                card.className = 'photo-card';
+                card.innerHTML =
+                    '<img src="' + escapeHtml(p.url) + '" alt="" loading="lazy" />' +
+                    '<div class="info">' + escapeHtml(p.name) + '</div>' +
+                    '<button class="delete-btn" title="Slet">&times;</button>';
+
+                card.querySelector('.delete-btn').addEventListener('click', function () {
+                    showConfirm(p);
+                });
+
+                photoGrid.appendChild(card);
+            });
+        }
+
+        function showConfirm(photo) {
+            pendingDeleteId = photo.id;
+            confirmImg.src = photo.url;
+            confirmName.textContent = photo.name;
+            confirmDelete.disabled = false;
+            confirmDelete.textContent = 'Slet';
+            overlay.classList.add('visible');
+        }
+
+        confirmCancel.addEventListener('click', function () {
+            overlay.classList.remove('visible');
+            pendingDeleteId = null;
+        });
+
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) {
+                overlay.classList.remove('visible');
+                pendingDeleteId = null;
+            }
+        });
+
+        confirmDelete.addEventListener('click', function () {
+            if (!pendingDeleteId) return;
+            confirmDelete.disabled = true;
+            confirmDelete.textContent = 'Sletter...';
+
+            fetch('/umbraco/api/ellabm/photos/' + pendingDeleteId, {
+                method: 'DELETE',
+                headers: { 'X-Ellabm-Password': password }
+            })
+            .then(function (res) {
+                if (res.status === 401) {
+                    localStorage.removeItem(AUTH_KEY);
+                    overlay.classList.remove('visible');
+                    admin.classList.remove('visible');
+                    gate.classList.remove('hidden');
+                    gateError.style.display = 'block';
+                    return null;
+                }
+                if (!res.ok) {
+                    return res.text().then(function (t) {
+                        throw new Error('HTTP ' + res.status + ': ' + t);
+                    });
+                }
+                return res.json();
+            })
+            .then(function (data) {
+                if (!data) return;
+                if (data.success) {
+                    overlay.classList.remove('visible');
+                    pendingDeleteId = null;
+                    loadPhotos();
+                } else {
+                    confirmDelete.textContent = 'Fejl: ' + (data.error || 'Ukendt fejl');
+                    confirmDelete.disabled = false;
+                }
+            })
+            .catch(function (err) {
+                console.error('Delete failed:', err);
+                confirmDelete.textContent = 'Fejl - Prøv igen';
+                confirmDelete.disabled = false;
+            });
+        });
+
+        function escapeHtml(str) {
+            var div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+    })();
+    </script>
+</body>
+</html>

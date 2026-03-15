@@ -1,0 +1,32 @@
+{
+  "Name": "EllabmAdmin",
+  "Alias": "ellabmAdmin",
+  "DefaultTemplate": "umb://template/2f1f49378e464ae2a3458a394033c087",
+  "AllowedTemplates": [
+    "umb://template/2f1f49378e464ae2a3458a394033c087"
+  ],
+  "HistoryCleanup": {},
+  "Icon": "icon-lock",
+  "Thumbnail": "folder.png",
+  "Permissions": {
+    "AllowedChildContentTypes": []
+  },
+  "Parent": "umb://document-type-container/78f07e2e57ba4268a27e391a65af09a8",
+  "CompositionContentTypes": [],
+  "PropertyGroups": [],
+  "PropertyTypes": [],
+  "Udi": "umb://document-type/440fc947aca44566bb5b6fc55b9f64e2",
+  "Dependencies": [
+    {
+      "Udi": "umb://document-type-container/78f07e2e57ba4268a27e391a65af09a8",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://template/2f1f49378e464ae2a3458a394033c087",
+      "Ordering": true,
+      "Mode": "Exist"
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
+  "__version": "17.0.2"
+}
