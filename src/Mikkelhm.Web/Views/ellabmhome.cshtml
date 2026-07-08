@@ -1,7 +1,7 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Mikkelhm.Models.EllabmHome>
 @{
     Layout = null;
-    var galleryPage = Model.Children?.FirstOrDefault(x => x.ContentType.Alias == "ellabmGallery");
+    var galleryPage = Model.Children()?.FirstOrDefault(x => x.ContentType.Alias == "ellabmGallery");
 }
 <!DOCTYPE html>
 <html lang="da">
