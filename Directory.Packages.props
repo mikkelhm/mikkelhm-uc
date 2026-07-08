@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.3.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.3.0" />
+    <PackageVersion Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
+    <PackageVersion Include="Umbraco.Cloud.Cms" Version="17.2.0" />
+    <PackageVersion Include="Umbraco.Cloud.StorageProviders.AzureBlob" Version="17.0.0" />
+    <PackageVersion Include="Umbraco.Cms" Version="17.5.3" />
+    <PackageVersion Include="Umbraco.Cms.Core" Version="17.5.3" />
+    <PackageVersion Include="Umbraco.Cms.DevelopmentMode.Backoffice" Version="17.5.3" />
+    <PackageVersion Include="Umbraco.Cms.Infrastructure" Version="17.5.3" />
+    <PackageVersion Include="Umbraco.Deploy.Cloud" Version="17.2.0" />
+    <PackageVersion Include="Umbraco.Forms" Version="17.4.5" />
+    <PackageVersion Include="Umbraco.Forms.Deploy" Version="17.0.0" />
+  </ItemGroup>
+</Project>

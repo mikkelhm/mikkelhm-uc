@@ -38,6 +38,8 @@ dotnet add src/Mikkelhm.Web/Mikkelhm.Web.csproj package [PackageName]
 dotnet add src/Mikkelhm.Core/Mikkelhm.Core.csproj package [PackageName]
 ```
 
+The solution uses **Central Package Management**: all package versions are defined in `Directory.Packages.props` at the repository root, and `PackageReference` items in the csproj files must not specify a `Version` attribute. `dotnet add package` handles this automatically; when editing csproj files by hand, add/update the corresponding `PackageVersion` entry in `Directory.Packages.props` instead.
+
 ## Architecture Overview
 
 ### Solution Structure
