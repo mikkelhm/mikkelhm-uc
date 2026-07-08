@@ -6,18 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cloud.Cms" Version="17.2.0" />
-    <PackageReference Include="Umbraco.Cms.DevelopmentMode.Backoffice" Version="17.5.3" />
-    <PackageReference Include="Umbraco.Cloud.StorageProviders.AzureBlob" Version="17.0.0" />
-    <PackageReference Include="Umbraco.Cms" Version="17.5.3" />
-    <PackageReference Include="Umbraco.Deploy.Cloud" Version="17.2.0" />
-    <PackageReference Include="Umbraco.Forms" Version="17.4.5" />
-    <PackageReference Include="Umbraco.Forms.Deploy" Version="17.0.0" />
+    <PackageReference Include="Umbraco.Cloud.Cms" />
+    <PackageReference Include="Umbraco.Cms.DevelopmentMode.Backoffice" />
+    <PackageReference Include="Umbraco.Cloud.StorageProviders.AzureBlob" />
+    <PackageReference Include="Umbraco.Cms" />
+    <PackageReference Include="Umbraco.Deploy.Cloud" />
+    <PackageReference Include="Umbraco.Forms" />
+    <PackageReference Include="Umbraco.Forms.Deploy" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
-    <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
+    <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" />
     <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
   </ItemGroup>
 
