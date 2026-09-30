@@ -8,17 +8,18 @@ This is an Umbraco Cloud CMS project built with .NET 10.0. The solution consists
 
 - **Mikkelhm.Web** - Main web application with Umbraco CMS integration
 - **Mikkelhm.Core** - Core library containing components, composers, and frontend helpers
+- **Mikkelhm.Models** - ModelsBuilder-generated strongly typed content models (`*.generated.cs`). Umbraco regenerates them on boot and when doc types change, so commit them together with the matching `.uda` changes
 
-The project uses Umbraco CMS v17.2.2 with Umbraco Cloud v17.0.0, Deploy, and Forms packages for content management and deployment.
+The project uses Umbraco CMS v18.2.0 with Umbraco Cloud v18.0.3, Deploy v18.1.1, and Forms v18.1.3 packages for content management and deployment.
 
 ## Common Development Commands
 
 ### Build and Run
 ```bash
-# Build the entire solution (recommended - includes both projects)
+# Build the entire solution (recommended - includes all projects)
 dotnet build src/Mikkelhm.sln
 
-# Build only the web project (also builds Core as dependency)
+# Build only the web project (also builds Core and Models as dependencies)
 dotnet build src/Mikkelhm.Web/Mikkelhm.Web.csproj
 
 # Run the web application
@@ -43,15 +44,15 @@ The solution uses **Central Package Management**: all package versions are defin
 ## Architecture Overview
 
 ### Solution Structure
-The solution has two primary projects with a clear separation of concerns:
+The solution has three projects with a clear separation of concerns:
 
-**src/Mikkelhm.sln** - Root solution file containing both projects
+**src/Mikkelhm.sln** - Root solution file containing all three projects
 
 **src/Mikkelhm.Web/** - ASP.NET Core web application (SDK: Microsoft.NET.Sdk.Web)
   - Standard Umbraco startup: `Program.cs` uses `ConfigureUmbracoDefaults()` and `Startup.cs` configures services
   - `Startup.cs`: Registers Umbraco with `.AddBackOffice()`, `.AddWebsite()`, `.AddDeliveryApi()`, and `.AddComposers()`
   - Contains Views, App_Plugins, and wwwroot for frontend assets
-  - Project reference to Mikkelhm.Core
+  - Project references to Mikkelhm.Core and Mikkelhm.Models
   - Razor compilation disabled (`RazorCompileOnBuild: false`) for faster development
 
 **src/Mikkelhm.Core/** - Shared class library (SDK: Microsoft.NET.Sdk)
@@ -87,7 +88,23 @@ The solution has two primary projects with a clear separation of concerns:
 - **ICU Globalization**: Uses app-local ICU4C runtime (version 72.1.0.3) for consistent globalization across platforms
 - **Razor Compilation**: Disabled for build but Razor files copied to publish directory for backoffice functionality
 
+## Site Structure
+
+Three independent subsites, each a root `Website` node (Generic doc type, no template) with its own home page. No hostnames are bound, so the root URL `/` returns 404 locally and on Cloud (known, accepted).
+
+| Subsite | Tree | Document types | Templates | URL |
+|---------|------|----------------|-----------|-----|
+| Blog | Blog → Home → Archive → 81 posts | `blogHome`, `blogPostRepository` (collection), `blogPost` | `BlogMaster` (layout) → `BlogHome`, `BlogPost` | `/home/`, `/home/archive/<post>/` |
+| Asta | Asta → Home → Photos → 7 photos | `astaHome`, `astaPhotoGallery` (collection), `astaPhoto` | `AstaHome` only | Not routable locally: its Home collides with Blog's `/home/` |
+| Ellabm | Ellabm → Ellas Fest → Galleri, Admin | `ellabmHome`, `ellabmGallery`, `ellabmAdmin` | `EllabmHome`, `EllabmGallery`, `EllabmAdmin` | `/ellas-fest/`, `/ellas-fest/galleri/`, `/ellas-fest/admin/` |
+
+- **Shared**: `website` (root node) and `sEOSection` (element type used as a composition by the Blog doc types), both in the `Generic` doc type folder.
+- **Ellabm API**: `src/Mikkelhm.Web/Controllers/EllabmApiController.cs` at `umbraco/api/ellabm`: `POST upload`, `GET photos`, `DELETE photos/{id}`. It backs the photo upload, slideshow and admin pages.
+- The schema lives in `.uda` files in `src/Mikkelhm.Web/umbraco/Deploy/Revision/`. Use the Umbraco MCP for content and publish state.
+
 ## Umbraco MCP Workflow Tips
+
+The Umbraco MCP (`umbraco-mcp` in `.mcp.json`) runs `@umbraco-cms/mcp-dev@18.1` with credentials from the gitignored `.env`. Keep its major version in line with the CMS. It needs the site running on `https://localhost:44385` (`UmbracoProject` launch profile).
 
 When using the Umbraco MCP tools to create document types and content, follow this order:
 
