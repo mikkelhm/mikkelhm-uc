@@ -138,6 +138,12 @@ public class CloudAlertMapperTests
     }
 
     [Fact]
+    public void ToDateTimeEditorValue_UsesTheDateTimeUnspecifiedStorageFormat()
+        => Assert.Equal(
+            """{"date":"2026-09-30T19:18:41+00:00","timeZone":null}""",
+            CloudAlertMapper.ToDateTimeEditorValue(new DateTime(2026, 9, 30, 19, 18, 41, DateTimeKind.Utc).AddTicks(2585377)));
+
+    [Fact]
     public void ToNodeData_WithoutTimeFired_Throws()
         => Assert.Throws<ArgumentException>(() => CloudAlertMapper.ToNodeData(Parse("""{ "alertId": "a" }"""), "{}"));
 }

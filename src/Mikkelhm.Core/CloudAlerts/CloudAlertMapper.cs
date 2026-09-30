@@ -81,6 +81,10 @@ public static class CloudAlertMapper
         return name.Length <= MaxNameLength ? name : name[..MaxNameLength];
     }
 
+    // Storage format of the Umbraco.DateTimeUnspecified editor ("Date Picker with time").
+    public static string ToDateTimeEditorValue(DateTime utc)
+        => string.Create(CultureInfo.InvariantCulture, $$"""{"date":"{{utc:yyyy-MM-dd'T'HH:mm:ss}}+00:00","timeZone":null}""");
+
     private static string Clean(string? value) => value?.Trim() ?? "";
 
     private static string OrDefault(string value, string fallback) => value.Length > 0 ? value : fallback;
