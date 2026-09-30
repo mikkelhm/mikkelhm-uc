@@ -1,0 +1,137 @@
+{
+  "Name": "Cloud Alert",
+  "Alias": "cloudAlert",
+  "AllowedTemplates": [],
+  "HistoryCleanup": {},
+  "Icon": "icon-alert",
+  "Thumbnail": "folder.png",
+  "Description": "One Umbraco Cloud alert received by the Cloud Alerts webhook",
+  "Permissions": {
+    "AllowedInLibrary": true,
+    "AllowedChildContentTypes": []
+  },
+  "Parent": "umb://document-type-container/a4e82ba9214d4f1988dbe9b10b3d6980",
+  "CompositionContentTypes": [],
+  "PropertyGroups": [
+    {
+      "Key": "40757512-b911-4788-9bd8-5b3532da43bc",
+      "Name": "Alert",
+      "Alias": "alert",
+      "PropertyTypes": [
+        {
+          "Key": "122c1b56-3b55-44ed-8265-cc3c6012862d",
+          "Alias": "isTest",
+          "DataType": "umb://data-type/92897bc6a5f34ffeae27f2e7e33dda49",
+          "ValueType": "System.Boolean",
+          "Name": "Test alert",
+          "SortOrder": 7
+        },
+        {
+          "Key": "3bbac6ac-164c-4fdd-8bfc-20332aa3601f",
+          "Alias": "severity",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
+          "Name": "Severity",
+          "SortOrder": 5
+        },
+        {
+          "Key": "84bce80f-c942-47dd-a21c-099bf54e3c1e",
+          "Alias": "customerMetadata",
+          "DataType": "umb://data-type/c6bac0dd4ab945b18e30e4b619ee5da3",
+          "ValueType": "System.String",
+          "Name": "Customer metadata (JSON)",
+          "SortOrder": 9
+        },
+        {
+          "Key": "8625934b-9011-426b-84d4-3ef7d81dcb57",
+          "Alias": "alertName",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
+          "Name": "Alert name",
+          "SortOrder": 1
+        },
+        {
+          "Key": "8da7de8e-d5c0-45b9-9b15-ee041b07b5ef",
+          "Alias": "rawPayload",
+          "DataType": "umb://data-type/c6bac0dd4ab945b18e30e4b619ee5da3",
+          "ValueType": "System.String",
+          "Name": "Raw payload (JSON)",
+          "SortOrder": 10
+        },
+        {
+          "Key": "8dc58c89-31ad-4490-bf1d-4eae4fb48037",
+          "Alias": "environmentName",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
+          "Name": "Environment",
+          "SortOrder": 4
+        },
+        {
+          "Key": "aa1d7257-c99a-47fb-8364-bfd5951f356c",
+          "Alias": "projectUrl",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
+          "Name": "Project URL",
+          "SortOrder": 3
+        },
+        {
+          "Key": "d274c8d7-5f8a-4066-a05e-18ddae8725c2",
+          "Alias": "details",
+          "DataType": "umb://data-type/c6bac0dd4ab945b18e30e4b619ee5da3",
+          "ValueType": "System.String",
+          "Name": "Details",
+          "SortOrder": 8
+        },
+        {
+          "Key": "d4b2a92d-25da-4258-9d97-54d009381281",
+          "Alias": "alertId",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
+          "Name": "Alert ID"
+        },
+        {
+          "Key": "da8022d2-7122-4047-a9d8-b7e5236c5406",
+          "Alias": "timeFired",
+          "DataType": "umb://data-type/e4d66c0fb935420081f0025f7256b89a",
+          "ValueType": "System.Nullable\u003CSystem.DateTime\u003E",
+          "Name": "Time fired (UTC)",
+          "SortOrder": 6
+        },
+        {
+          "Key": "e5caf185-c586-487a-94b6-5938d4e5c8dd",
+          "Alias": "projectAlias",
+          "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
+          "Name": "Project alias",
+          "SortOrder": 2
+        }
+      ]
+    }
+  ],
+  "PropertyTypes": [],
+  "Udi": "umb://document-type/b44ee2adfe364c00961912e33b4bd785",
+  "Dependencies": [
+    {
+      "Udi": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://data-type/92897bc6a5f34ffeae27f2e7e33dda49",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://data-type/c6bac0dd4ab945b18e30e4b619ee5da3",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://data-type/e4d66c0fb935420081f0025f7256b89a",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://document-type-container/a4e82ba9214d4f1988dbe9b10b3d6980",
+      "Ordering": true
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
+  "__version": "18.1.1"
+}

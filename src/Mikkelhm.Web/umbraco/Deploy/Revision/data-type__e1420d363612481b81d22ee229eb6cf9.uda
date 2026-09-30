@@ -1,0 +1,64 @@
+{
+  "Name": "Collection - Cloud Alerts",
+  "EditorAlias": "Umbraco.ListView",
+  "EditorUiAlias": "Umb.PropertyEditorUi.Collection",
+  "DatabaseType": "Nvarchar",
+  "Configuration": {
+    "includeProperties": [
+      {
+        "alias": "alertName",
+        "header": "Alert",
+        "nameTemplate": null,
+        "isSystem": false
+      },
+      {
+        "alias": "projectAlias",
+        "header": "Project",
+        "nameTemplate": null,
+        "isSystem": false
+      },
+      {
+        "alias": "environmentName",
+        "header": "Environment",
+        "nameTemplate": null,
+        "isSystem": false
+      },
+      {
+        "alias": "severity",
+        "header": "Severity",
+        "nameTemplate": null,
+        "isSystem": false
+      },
+      {
+        "alias": "timeFired",
+        "header": "Time fired (UTC)",
+        "nameTemplate": null,
+        "isSystem": false
+      },
+      {
+        "alias": "isTest",
+        "header": "Test",
+        "nameTemplate": null,
+        "isSystem": false
+      }
+    ],
+    "layouts": [
+      {
+        "name": "List",
+        "collectionView": "Umb.CollectionView.Document.Table",
+        "icon": "icon-list",
+        "isSystem": true,
+        "selected": true
+      }
+    ],
+    "orderBy": "timeFired",
+    "orderDirection": "desc",
+    "pageSize": 50,
+    "icon": "icon-alert",
+    "showContentFirst": false
+  },
+  "Udi": "umb://data-type/e1420d363612481b81d22ee229eb6cf9",
+  "Dependencies": [],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.DataTypeArtifact",
+  "__version": "18.1.1"
+}
