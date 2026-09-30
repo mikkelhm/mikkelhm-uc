@@ -29,12 +29,14 @@
           "Key": "db9ad5a2-dd81-4c9e-885f-24c25fa12e87",
           "Alias": "disqusShortname",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
           "Name": "Disqus Shortname"
         },
         {
           "Key": "dc8f66ee-ff14-4640-a43a-fc15d01dd6ef",
           "Alias": "disqusIdentifier",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
           "Name": "Disqus identifier",
           "SortOrder": 1
         }
@@ -50,6 +52,7 @@
           "Key": "877fb1fb-a90c-4fb3-999d-009e7a4cee54",
           "Alias": "blogSidebarLogo",
           "DataType": "umb://data-type/dc34b7119e5b4a6da59b79c9f08f338d",
+          "ValueType": "Umbraco.Cms.Core.Models.MediaWithCrops",
           "Name": "Blog sidebar logo",
           "SortOrder": 2
         },
@@ -57,12 +60,14 @@
           "Key": "d5c8834c-33b0-42b6-8633-7172b08a10ef",
           "Alias": "blogTitle",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
           "Name": "Blog title"
         },
         {
           "Key": "dc73e082-3f2e-4f23-abcd-6166962146fe",
           "Alias": "blogDescription",
           "DataType": "umb://data-type/c6bac0dd4ab945b18e30e4b619ee5da3",
+          "ValueType": "System.String",
           "Name": "Blog description",
           "SortOrder": 1
         }
@@ -103,5 +108,5 @@
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "17.0.0"
+  "__version": "18.1.1"
 }

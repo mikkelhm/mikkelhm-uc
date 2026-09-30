@@ -20,12 +20,14 @@
           "Key": "0715b1fe-c2f8-4449-b8ff-81ac62160764",
           "Alias": "title",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
           "Name": "Title"
         },
         {
           "Key": "931bf4ee-8fcb-4a9e-8192-5fc1c2c0ecc6",
           "Alias": "photo",
           "DataType": "umb://data-type/265ba68c5ab1491a918edab269e7334e",
+          "ValueType": "Umbraco.Cms.Core.Models.MediaWithCrops",
           "Name": "Photo",
           "SortOrder": 1
         }
@@ -49,5 +51,5 @@
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "17.0.0"
+  "__version": "18.1.1"
 }

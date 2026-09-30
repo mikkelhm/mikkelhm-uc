@@ -27,12 +27,14 @@
           "Key": "9dc768a9-d803-4b11-997a-0c04aba45ca0",
           "Alias": "headline",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
           "Name": "Headline"
         },
         {
           "Key": "b376bdcc-16f4-4fcd-bedb-5b18f5d7a34f",
           "Alias": "body",
           "DataType": "umb://data-type/ca90c9500aff4e72b976a30b1ac57dad",
+          "ValueType": "Umbraco.Cms.Core.Strings.IHtmlEncodedString",
           "Name": "Body",
           "SortOrder": 1
         }
@@ -69,5 +71,5 @@
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "17.0.2"
+  "__version": "18.1.1"
 }

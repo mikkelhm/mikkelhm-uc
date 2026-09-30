@@ -24,6 +24,7 @@
           "Key": "6cba4144-f4bb-4691-acd9-82e5dbdfd563",
           "Alias": "slideDuration",
           "DataType": "umb://data-type/2e6d3631066e44b8aec496f09099b2b5",
+          "ValueType": "System.Int32",
           "Name": "Slide Duration"
         }
       ]
@@ -47,5 +48,5 @@
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "17.0.2"
+  "__version": "18.1.1"
 }

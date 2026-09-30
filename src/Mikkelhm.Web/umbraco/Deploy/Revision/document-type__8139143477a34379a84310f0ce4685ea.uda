@@ -22,6 +22,7 @@
           "Key": "49e4cb9a-6b95-4769-b847-17902fca3705",
           "Alias": "metaDescription",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
           "Name": "Meta description",
           "SortOrder": 1
         },
@@ -29,6 +30,7 @@
           "Key": "589ca1ba-1cb1-4218-a754-2407fb2ba7aa",
           "Alias": "metaTitle",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
           "Name": "Meta title"
         }
       ]
@@ -43,6 +45,7 @@
           "Key": "14d2fe94-211b-4c12-b4da-06395a4ff3bd",
           "Alias": "openGraphImage",
           "DataType": "umb://data-type/159ea2ee26334d2e8fd188c634159f70",
+          "ValueType": "Umbraco.Cms.Core.Models.MediaWithCrops",
           "Name": "Open graph image",
           "SortOrder": 2
         },
@@ -50,12 +53,14 @@
           "Key": "c23480fd-aea8-4a91-a047-201e29c282a8",
           "Alias": "openGraphTitle",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
           "Name": "Open graph title"
         },
         {
           "Key": "e27a5335-e76f-42b8-9e5c-e3ae5af3b1dd",
           "Alias": "openGraphDescription",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
           "Name": "Open graph description",
           "SortOrder": 1
         }
@@ -79,5 +84,5 @@
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "17.0.0"
+  "__version": "18.1.1"
 }

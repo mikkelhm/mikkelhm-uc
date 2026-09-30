@@ -19,6 +19,7 @@
           "Key": "0000002e-0000-0000-0000-000000000000",
           "Alias": "umbracoFile",
           "DataType": "umb://data-type/bc1e266cdac44164bf088a1ec6a7143d",
+          "ValueType": "System.String",
           "Mandatory": true,
           "Name": "Article"
         },
@@ -26,6 +27,7 @@
           "Key": "0000002f-0000-0000-0000-000000000000",
           "Alias": "umbracoExtension",
           "DataType": "umb://data-type/f0bc4bfbb49940d6ba86058885a5178c",
+          "ValueType": "System.String",
           "Name": "File extension",
           "SortOrder": 1
         }
@@ -45,5 +47,5 @@
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.MediaTypeArtifact",
-  "__version": "17.0.0"
+  "__version": "18.1.1"
 }

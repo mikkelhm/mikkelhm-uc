@@ -25,6 +25,7 @@
           "Key": "1eb2ec47-657a-44a9-b1d4-0a3412c1bf1c",
           "Alias": "references",
           "DataType": "umb://data-type/55aca15649b940f885a4200c1f0e7b67",
+          "ValueType": "System.Collections.Generic.IEnumerable\u003CUmbraco.Cms.Core.Models.Link\u003E",
           "Name": "References",
           "SortOrder": 1
         },
@@ -32,6 +33,7 @@
           "Key": "bef985a0-6e7c-4c5c-9d7c-d4a9f97c1c2d",
           "Alias": "body",
           "DataType": "umb://data-type/8f89b8ab84d24ff0838932954b8404b6",
+          "ValueType": "Umbraco.Cms.Core.Strings.IHtmlEncodedString",
           "Name": "Body"
         }
       ]
@@ -46,6 +48,7 @@
           "Key": "094c0df7-9d02-4403-903a-a9686d3a47e7",
           "Alias": "enableComments",
           "DataType": "umb://data-type/92897bc6a5f34ffeae27f2e7e33dda49",
+          "ValueType": "System.Boolean",
           "Name": "Enable comments",
           "SortOrder": 2
         },
@@ -53,6 +56,7 @@
           "Key": "16c9e49d-3e65-4e4e-b117-9b9a27b7c34a",
           "Alias": "publishedDate",
           "DataType": "umb://data-type/e4d66c0fb935420081f0025f7256b89a",
+          "ValueType": "System.Nullable\u003CSystem.DateTime\u003E",
           "Name": "Published date",
           "SortOrder": 3
         },
@@ -60,12 +64,14 @@
           "Key": "32154f88-f5e3-4b35-9ab3-4e545a19fe8d",
           "Alias": "excerpt",
           "DataType": "umb://data-type/0cc0eba1996042c9bf9b60e150b429ae",
+          "ValueType": "System.String",
           "Name": "Excerpt"
         },
         {
           "Key": "955a42e4-65c0-491e-ab83-979e7359f29f",
           "Alias": "tags",
           "DataType": "umb://data-type/f2d7803b41604b69b1e383365bb3107c",
+          "ValueType": "System.Collections.Generic.IEnumerable\u003CSystem.String\u003E",
           "Name": "Tags",
           "SortOrder": 1
         }
@@ -114,5 +120,5 @@
     }
   ],
   "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
-  "__version": "17.0.0"
+  "__version": "18.1.1"
 }
