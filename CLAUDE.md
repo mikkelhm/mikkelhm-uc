@@ -9,7 +9,7 @@ This is an Umbraco Cloud CMS project built with .NET 10.0. The solution consists
 - **Mikkelhm.Web** - Main web application with Umbraco CMS integration
 - **Mikkelhm.Core** - Core library containing components, composers, and frontend helpers
 - **Mikkelhm.Models** - ModelsBuilder-generated strongly typed content models (`*.generated.cs`). Umbraco regenerates them on boot and when doc types change, so commit them together with the matching `.uda` changes
-- **tests/Mikkelhm.Core.Tests** - xUnit + NSubstitute tests for Core (run `dotnet test src/Mikkelhm.sln`)
+- **tests/Mikkelhm.Core.Tests** - xUnit + NSubstitute tests for Core (run `dotnet test src/Mikkelhm.sln`). `tests/Mikkelhm.Web.Scripts` holds `node --test` tests for frontend scripts (run `node --test tests/Mikkelhm.Web.Scripts`)
 
 The project uses Umbraco CMS v18.2.0 with Umbraco Cloud v18.0.3, Deploy v18.1.1, and Forms v18.1.3 packages for content management and deployment.
 

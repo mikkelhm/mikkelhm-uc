@@ -20,21 +20,31 @@ public sealed class UmbracoCloudAlertStore : ICloudAlertStore
         _contentService = contentService;
     }
 
-    public Task<Guid?> FindContainerKeyAsync()
+    // Only a published container counts: alerts under an unpublished one can't be published.
+    public async Task<Guid?> FindContainerKeyAsync()
     {
-        if (_navigation.TryGetRootKeys(out var rootKeys))
+        if (!_navigation.TryGetRootKeys(out var rootKeys))
         {
-            foreach (var rootKey in rootKeys)
+            return null;
+        }
+
+        foreach (var rootKey in rootKeys)
+        {
+            if (!_navigation.TryGetDescendantsKeysOfType(rootKey, CloudAlertsConstants.HomeAlias, out var homeKeys))
             {
-                if (_navigation.TryGetDescendantsKeysOfType(rootKey, CloudAlertsConstants.HomeAlias, out var homeKeys)
-                    && homeKeys.Any())
+                continue;
+            }
+
+            foreach (var homeKey in homeKeys)
+            {
+                if (await _publishedContentCache.GetByIdAsync(homeKey) is not null)
                 {
-                    return Task.FromResult<Guid?>(homeKeys.First());
+                    return homeKey;
                 }
             }
         }
 
-        return Task.FromResult<Guid?>(null);
+        return null;
     }
 
     public async Task<bool> AlertExistsAsync(Guid containerKey, string alertId)
@@ -81,6 +91,8 @@ public sealed class UmbracoCloudAlertStore : ICloudAlertStore
         var publishResult = _contentService.Publish(content, ["*"]);
         if (!publishResult.Success)
         {
+            // Don't leave an unpublished draft behind: the duplicate check only sees published alerts.
+            _contentService.Delete(content);
             throw new InvalidOperationException($"Publishing cloud alert {data.AlertId} failed: {publishResult.Result}");
         }
 
