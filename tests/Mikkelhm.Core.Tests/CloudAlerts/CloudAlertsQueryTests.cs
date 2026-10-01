@@ -59,12 +59,13 @@ public class CloudAlertsQueryTests
     }
 
     [Fact]
-    public void Run_DateRange_IncludesBothWholeDays()
+    public void Run_DateRange_IncludesBothWholeCopenhagenDays()
     {
-        var startOfDay = Alert(time: new DateTime(2026, 9, 30, 0, 0, 0, DateTimeKind.Utc));
-        var endOfDay = Alert(time: new DateTime(2026, 9, 30, 23, 59, 59, DateTimeKind.Utc));
-        var dayBefore = Alert(time: new DateTime(2026, 9, 29, 23, 59, 59, DateTimeKind.Utc));
-        var dayAfter = Alert(time: new DateTime(2026, 10, 1, 0, 0, 0, DateTimeKind.Utc));
+        // 30-09-2026 in Copenhagen (CEST, UTC+2) runs from 29-09 22:00 UTC to 30-09 22:00 UTC.
+        var startOfDay = Alert(time: new DateTime(2026, 9, 29, 22, 0, 0, DateTimeKind.Utc));
+        var endOfDay = Alert(time: new DateTime(2026, 9, 30, 21, 59, 59, DateTimeKind.Utc));
+        var dayBefore = Alert(time: new DateTime(2026, 9, 29, 21, 59, 59, DateTimeKind.Utc));
+        var dayAfter = Alert(time: new DateTime(2026, 9, 30, 22, 0, 0, DateTimeKind.Utc));
 
         var page = CloudAlertsQuery.Run(
             [startOfDay, endOfDay, dayBefore, dayAfter],
@@ -114,6 +115,29 @@ public class CloudAlertsQueryTests
     }
 
     [Fact]
+    public void Run_DateRange_UsesWinterOffsetAfterSummerTimeEnds()
+    {
+        // 26-10-2026 in Copenhagen (CET, UTC+1) runs from 25-10 23:00 UTC to 26-10 23:00 UTC.
+        var inside = Alert(time: new DateTime(2026, 10, 25, 23, 0, 0, DateTimeKind.Utc));
+        var before = Alert(time: new DateTime(2026, 10, 25, 22, 59, 59, DateTimeKind.Utc));
+
+        var page = CloudAlertsQuery.Run([inside, before], new CloudAlertFilter { From = new DateOnly(2026, 10, 26), To = new DateOnly(2026, 10, 26) });
+
+        Assert.Equal([inside], page.Items);
+    }
+
+    [Fact]
+    public void Run_ReportsOldestAndNewestOfAllFilteredAlerts()
+    {
+        var alerts = Enumerable.Range(0, 60).Select(i => Alert(time: Noon.AddHours(-i))).Append(Alert(project: "other", time: Noon.AddDays(5))).ToList();
+
+        var page = CloudAlertsQuery.Run(alerts, new CloudAlertFilter { Project = "mikkelhm", Page = 1 });
+
+        Assert.Equal(Noon, page.NewestUtc);
+        Assert.Equal(Noon.AddHours(-59), page.OldestUtc);
+    }
+
+    [Fact]
     public void Run_NoAlerts_ReturnsEmptySinglePage()
     {
         var page = CloudAlertsQuery.Run([], new CloudAlertFilter { Page = 5 });
@@ -123,6 +147,8 @@ public class CloudAlertsQueryTests
         Assert.Equal(1, page.Page);
         Assert.Equal(1, page.TotalPages);
         Assert.Empty(page.SeverityCounts);
+        Assert.Null(page.OldestUtc);
+        Assert.Null(page.NewestUtc);
     }
 
     [Fact]
