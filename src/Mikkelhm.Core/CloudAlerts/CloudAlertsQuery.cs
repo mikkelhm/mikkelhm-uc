@@ -14,7 +14,9 @@ public sealed record CloudAlertsPage(
     int Page,
     int TotalPages,
     IReadOnlyList<SeverityCount> SeverityCounts,
-    CloudAlertFacets Facets);
+    CloudAlertFacets Facets,
+    DateTime? OldestUtc,
+    DateTime? NewestUtc);
 
 public static class CloudAlertsQuery
 {
@@ -51,7 +53,15 @@ public static class CloudAlertsQuery
         var page = Math.Clamp(filter.Page, 1, totalPages);
         var items = filtered.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
-        return new CloudAlertsPage(items, filtered.Count, page, totalPages, severityCounts, facets);
+        return new CloudAlertsPage(
+            items,
+            filtered.Count,
+            page,
+            totalPages,
+            severityCounts,
+            facets,
+            filtered.Count > 0 ? filtered[^1].TimeFiredUtc : null,
+            filtered.Count > 0 ? filtered[0].TimeFiredUtc : null);
     }
 
     private static bool MatchesAllButSeverity(CloudAlertView alert, CloudAlertFilter filter)
@@ -59,8 +69,8 @@ public static class CloudAlertsQuery
            && Matches(alert.EnvironmentName, filter.Environment)
            && Matches(alert.AlertName, filter.AlertName)
            && (filter.Search is null || alert.Details.Contains(filter.Search, StringComparison.OrdinalIgnoreCase))
-           && (filter.From is null || alert.TimeFiredUtc >= filter.From.Value.ToDateTime(TimeOnly.MinValue, DateTimeKind.Utc))
-           && (filter.To is null || alert.TimeFiredUtc < filter.To.Value.AddDays(1).ToDateTime(TimeOnly.MinValue, DateTimeKind.Utc))
+           && (filter.From is null || alert.TimeFiredUtc >= CloudAlertsTime.StartOfDayUtc(filter.From.Value))
+           && (filter.To is null || alert.TimeFiredUtc < CloudAlertsTime.StartOfDayUtc(filter.To.Value.AddDays(1)))
            && filter.Tests switch
            {
                TestAlertMode.Hide => !alert.IsTest,

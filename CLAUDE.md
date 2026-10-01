@@ -103,7 +103,7 @@ Four independent subsites, each a root `Website` node (Generic doc type, no temp
 
 - **Shared**: `website` (root node) and `sEOSection` (element type used as a composition by the Blog doc types), both in the `Generic` doc type folder.
 - **Ellabm API**: `src/Mikkelhm.Web/Controllers/EllabmApiController.cs` at `umbraco/api/ellabm`: `POST upload`, `GET photos`, `DELETE photos/{id}`. It backs the photo upload, slideshow and admin pages.
-- **Cloud Alerts webhook**: `POST /umbraco/api/cloud-alerts/webhook` (`CloudAlertsWebhookController`), header `uc-webhook-auth` checked against config `CloudAlerts:WebhookSecret` (user-secrets locally, env var `CloudAlerts__WebhookSecret` on Cloud). Each alert becomes a published `cloudAlert` under the `Cloud Alerts` home. Logic lives in `src/Mikkelhm.Core/CloudAlerts/`. The root node is named `CloudAlertsSite` because a root and home with the same name collide on URL.
+- **Cloud Alerts webhook**: `POST /umbraco/api/cloud-alerts/webhook` (`CloudAlertsWebhookController`), header `uc-webhook-auth` checked against config `CloudAlerts:WebhookSecret` (user-secrets locally, env var `CloudAlerts__WebhookSecret` on Cloud). Each alert becomes a published `cloudAlert` under the `Cloud Alerts` home. Logic lives in `src/Mikkelhm.Core/CloudAlerts/`. The listing page is a day-grouped timeline; its times, day groups and date filters always use Copenhagen time (`CloudAlertsTime`), and it shows only the project alias (no alert IDs, project URLs or payloads). The root node is named `CloudAlertsSite` because a root and home with the same name collide on URL.
 - The schema lives in `.uda` files in `src/Mikkelhm.Web/umbraco/Deploy/Revision/`. Use the Umbraco MCP for content and publish state.
 
 ## Umbraco MCP Workflow Tips

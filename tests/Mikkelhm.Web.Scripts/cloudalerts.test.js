@@ -30,3 +30,8 @@ test('queryFrom keeps a non-default checked radio and ignores unnamed controls',
 test('queryFrom with only defaults returns an empty string', () => {
   assert.strictEqual(queryFrom([field('project', ''), field('tests', 'show', { type: 'radio', checked: true })]), '');
 });
+
+test('queryFrom includes a checkbox only when it is checked', () => {
+  assert.strictEqual(queryFrom([field('tests', 'hide', { type: 'checkbox', checked: false })]), '');
+  assert.strictEqual(queryFrom([field('tests', 'hide', { type: 'checkbox', checked: true })]), '?tests=hide');
+});

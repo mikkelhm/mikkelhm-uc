@@ -1,4 +1,4 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Mikkelhm.Models.CloudAlertsHome>
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Mikkelhm.Models.CloudAlertsHome>
 @using System.Globalization
 @using Microsoft.Extensions.Logging
 @using Mikkelhm.Core.CloudAlerts
@@ -34,10 +34,15 @@
     }
 
     var result = CloudAlertsQuery.Run(alerts, filter);
+    var nowUtc = DateTime.UtcNow;
+    var today = DateOnly.FromDateTime(CloudAlertsTime.ToLocal(nowUtc));
+    var days = CloudAlertsTimeline.GroupByDay(result.Items, today);
     var title = string.IsNullOrWhiteSpace(Model.MetaTitle) ? Model.Name : Model.MetaTitle;
     var baseUrl = Model.Url();
     string PageUrl(CloudAlertFilter f) => baseUrl + f.ToQueryString();
     bool IsSelected(string? current, string value) => string.Equals(current, value, StringComparison.OrdinalIgnoreCase);
+    bool IsHighlighted(string severity) => severity.Trim().ToLowerInvariant() is "high" or "critical";
+    string SeverityLabel(string severity) => severity.Length == 0 ? "" : CultureInfo.InvariantCulture.TextInfo.ToTitleCase(severity.Trim().ToLowerInvariant());
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -45,16 +50,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Sans+3:wght@400;600&display=swap" />
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="/cloudalerts/cloudalerts.css" />
 </head>
 <body>
-    <header class="ca-header">
-        <h1>@title</h1>
-        <p class="ca-sub">Umbraco Cloud alerts received by webhook</p>
-    </header>
+    <main class="ca-page">
+        <header class="ca-header">
+            <h1>@title</h1>
+            @if (result.TotalCount > 0)
+            {
+                <p class="ca-sub">@result.TotalCount @(result.TotalCount == 1 ? "alert" : "alerts") @CloudAlertsTimeline.RangeText(result.OldestUtc!.Value, result.NewestUtc!.Value)</p>
+            }
+            <p class="ca-zone">All times are Copenhagen time (@CloudAlertsTime.ZoneLabel(nowUtc))</p>
+        </header>
 
-    <main class="ca-main">
         <form id="ca-filters" class="ca-filters" method="get" action="@baseUrl">
             <label>Project
                 <select name="project">
@@ -80,73 +92,65 @@
                     @foreach (var v in result.Facets.Severities) { <option value="@v" selected="@IsSelected(filter.Severity, v)">@v</option> }
                 </select>
             </label>
-            <label>From
+            <label>From (Copenhagen)
                 <input type="date" name="from" value="@filter.From?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)" />
             </label>
-            <label>To
+            <label>To (Copenhagen)
                 <input type="date" name="to" value="@filter.To?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)" />
             </label>
-            <label class="ca-search">Search details
-                <input type="search" name="q" value="@filter.Search" placeholder="e.g. completed" />
+            <label class="ca-search">Search
+                <input type="search" name="q" value="@filter.Search" placeholder="details" />
             </label>
-            <fieldset class="ca-tests">
-                <legend>Test alerts</legend>
-                @foreach (var mode in new[] { TestAlertMode.Show, TestAlertMode.Hide, TestAlertMode.Only })
-                {
-                    var value = mode.ToString().ToLowerInvariant();
-                    <label><input type="radio" name="tests" value="@value" checked="@(filter.Tests == mode)" /> @value</label>
-                }
-            </fieldset>
+            <label class="ca-check"><input type="checkbox" name="tests" value="hide" checked="@(filter.Tests == TestAlertMode.Hide)" /> Hide test alerts</label>
             <div class="ca-actions">
                 <button type="submit" class="ca-apply">Apply</button>
-                <a href="@baseUrl" class="ca-reset">Reset</a>
+                <a href="@baseUrl">Reset</a>
             </div>
         </form>
 
-        <p class="ca-summary">
-            <strong>@result.TotalCount</strong> @(result.TotalCount == 1 ? "alert" : "alerts")
-            @foreach (var s in result.SeverityCounts)
-            {
-                <a class="ca-chip @CloudAlertDisplay.SeverityClass(s.Severity)" href="@PageUrl(filter with { Severity = s.Severity, Page = 1 })">
-                    <span class="ca-dot"></span>@s.Count @s.Severity
-                </a>
-            }
-        </p>
+        @if (filter.Tests == TestAlertMode.Only)
+        {
+            <p class="ca-note">Showing only test alerts. <a href="@PageUrl(filter with { Tests = TestAlertMode.Show, Page = 1 })">Show all alerts</a></p>
+        }
 
-        @if (result.Items.Count == 0)
+        @if (days.Count == 0)
         {
             <p class="ca-empty">@(alerts.Count == 0 ? "No alerts received yet." : "No alerts match these filters.")</p>
         }
         else
         {
-            <ol class="ca-list">
-                @foreach (var a in result.Items)
-                {
-                    <li class="ca-card @CloudAlertDisplay.SeverityClass(a.Severity)">
-                        <div class="ca-card-head">
-                            <span class="ca-badge">@(a.Severity.Length > 0 ? a.Severity.ToUpperInvariant() : "N/A")</span>
-                            <span class="ca-alert">@a.AlertName</span>
-                            <span class="ca-project">@a.ProjectAlias</span>
-                            @if (a.EnvironmentName.Length > 0) { <span class="ca-pill">@a.EnvironmentName</span> }
-                            @if (a.IsTest) { <span class="ca-pill ca-test">TEST</span> }
-                        </div>
-                        <p class="ca-details">@a.Details</p>
-                        <div class="ca-card-foot">
-                            <span>
-                                <time datetime="@a.TimeFiredUtc.ToString("O", CultureInfo.InvariantCulture)" data-local>@a.TimeFiredUtc.ToString("dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture) UTC</time>
-                                <span class="ca-rel" data-rel></span>
-                            </span>
-                        </div>
-                    </li>
-                }
-            </ol>
+            foreach (var day in days)
+            {
+                <section class="ca-day">
+                    <h2>@day.Heading</h2>
+                    <ol class="ca-timeline">
+                        @foreach (var entry in day.Entries)
+                        {
+                            var a = entry.Alert;
+                            var severityLabel = SeverityLabel(a.Severity);
+                            var context = string.Join(" · ", new[] { a.ProjectAlias, a.EnvironmentName, a.IsTest ? "test" : "" }.Where(p => p.Length > 0));
+                            <li class="ca-entry @CloudAlertDisplay.SeverityClass(a.Severity)">
+                                <time datetime="@a.TimeFiredUtc.ToString("O", CultureInfo.InvariantCulture)" title="@entry.LocalTime.ToString("dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture) @CloudAlertsTime.Abbreviation(a.TimeFiredUtc)">@entry.LocalTime.ToString("HH:mm", CultureInfo.InvariantCulture)</time>
+                                <div class="ca-body@(IsHighlighted(a.Severity) ? " ca-body--highlight" : "")">
+                                    <div class="ca-meta">
+                                        <strong>@a.AlertName</strong>
+                                        @if (severityLabel.Length > 0) { <span class="ca-severity">@severityLabel</span> }
+                                        <span class="ca-context">@context</span>
+                                    </div>
+                                    <p>@a.Details</p>
+                                </div>
+                            </li>
+                        }
+                    </ol>
+                </section>
+            }
 
-            @if (result.TotalPages > 1)
+            if (result.TotalPages > 1)
             {
                 <nav class="ca-pager" aria-label="Pages">
-                    @if (result.Page > 1) { <a href="@PageUrl(filter with { Page = result.Page - 1 })">‹ Prev</a> } else { <span></span> }
+                    @if (result.Page > 1) { <a href="@PageUrl(filter with { Page = result.Page - 1 })">‹ Newer</a> } else { <span></span> }
                     <span>Page @result.Page of @result.TotalPages</span>
-                    @if (result.Page < result.TotalPages) { <a href="@PageUrl(filter with { Page = result.Page + 1 })">Next ›</a> } else { <span></span> }
+                    @if (result.Page < result.TotalPages) { <a href="@PageUrl(filter with { Page = result.Page + 1 })">Older ›</a> } else { <span></span> }
                 </nav>
             }
         }
