@@ -26,6 +26,7 @@ public class CloudAlertsWebhookController : ControllerBase
     }
 
     [HttpPost("webhook")]
+    // Server-to-server call authenticated by the uc-webhook-auth header, not cookies, so CSRF doesn't apply.
     [IgnoreAntiforgeryToken]
     [RequestSizeLimit(MaxBodyBytes)]
     public async Task<IActionResult> Webhook()
