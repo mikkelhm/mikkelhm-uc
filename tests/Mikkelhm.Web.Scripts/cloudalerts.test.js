@@ -1,4 +1,4 @@
-// Run with: node --test tests/Mikkelhm.Web.Scripts
+// Run with: node --test "tests/Mikkelhm.Web.Scripts/**/*.test.js"
 const test = require('node:test');
 const assert = require('node:assert');
 const { queryFrom } = require('../../src/Mikkelhm.Web/wwwroot/cloudalerts/cloudalerts.js');
