@@ -1,0 +1,175 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Mikkelhm.Models.CloudAlertsHome>
+@using System.Globalization
+@using Microsoft.Extensions.Logging
+@using Mikkelhm.Core.CloudAlerts
+@inject Microsoft.Extensions.Logging.ILogger<Mikkelhm.Models.CloudAlertsHome> Logger
+@{
+    Layout = null;
+
+    var query = Context.Request.Query.ToDictionary(q => q.Key, q => (string?)q.Value.ToString(), StringComparer.OrdinalIgnoreCase);
+    var filter = CloudAlertFilter.FromQuery(query);
+
+    var alerts = new List<CloudAlertView>();
+    foreach (var item in Model.Children<Mikkelhm.Models.CloudAlert>() ?? Enumerable.Empty<Mikkelhm.Models.CloudAlert>())
+    {
+        if (string.IsNullOrWhiteSpace(item.AlertId) || item.TimeFired is not { } timeFired || timeFired == default)
+        {
+            Logger.LogWarning("Skipping malformed cloud alert node {Key}", item.Key);
+            continue;
+        }
+
+        alerts.Add(new CloudAlertView(
+            item.Key,
+            item.AlertId,
+            item.ProjectAlias ?? "",
+            item.ProjectUrl ?? "",
+            item.EnvironmentName ?? "",
+            item.AlertName ?? "",
+            item.Details ?? "",
+            item.Severity ?? "",
+            item.CustomerMetadata ?? "",
+            DateTime.SpecifyKind(timeFired, DateTimeKind.Utc),
+            item.IsTest,
+            item.RawPayload ?? ""));
+    }
+
+    var result = CloudAlertsQuery.Run(alerts, filter);
+    var title = string.IsNullOrWhiteSpace(Model.MetaTitle) ? Model.Name : Model.MetaTitle;
+    var baseUrl = Model.Url();
+    string PageUrl(CloudAlertFilter f) => baseUrl + f.ToQueryString();
+    bool IsSelected(string? current, string value) => string.Equals(current, value, StringComparison.OrdinalIgnoreCase);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@title</title>
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="stylesheet" href="/cloudalerts/cloudalerts.css" />
+</head>
+<body>
+    <header class="ca-header">
+        <h1>@title</h1>
+        <p class="ca-sub">Umbraco Cloud alerts received by webhook</p>
+    </header>
+
+    <main class="ca-main">
+        <form id="ca-filters" class="ca-filters" method="get" action="@baseUrl">
+            <label>Project
+                <select name="project">
+                    <option value="">All</option>
+                    @foreach (var v in result.Facets.Projects) { <option value="@v" selected="@IsSelected(filter.Project, v)">@v</option> }
+                </select>
+            </label>
+            <label>Environment
+                <select name="env">
+                    <option value="">All</option>
+                    @foreach (var v in result.Facets.Environments) { <option value="@v" selected="@IsSelected(filter.Environment, v)">@v</option> }
+                </select>
+            </label>
+            <label>Alert
+                <select name="alert">
+                    <option value="">All</option>
+                    @foreach (var v in result.Facets.AlertNames) { <option value="@v" selected="@IsSelected(filter.AlertName, v)">@v</option> }
+                </select>
+            </label>
+            <label>Severity
+                <select name="severity">
+                    <option value="">All</option>
+                    @foreach (var v in result.Facets.Severities) { <option value="@v" selected="@IsSelected(filter.Severity, v)">@v</option> }
+                </select>
+            </label>
+            <label>From
+                <input type="date" name="from" value="@filter.From?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)" />
+            </label>
+            <label>To
+                <input type="date" name="to" value="@filter.To?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)" />
+            </label>
+            <label class="ca-search">Search details
+                <input type="search" name="q" value="@filter.Search" placeholder="e.g. completed" />
+            </label>
+            <fieldset class="ca-tests">
+                <legend>Test alerts</legend>
+                @foreach (var mode in new[] { TestAlertMode.Show, TestAlertMode.Hide, TestAlertMode.Only })
+                {
+                    var value = mode.ToString().ToLowerInvariant();
+                    <label><input type="radio" name="tests" value="@value" checked="@(filter.Tests == mode)" /> @value</label>
+                }
+            </fieldset>
+            <div class="ca-actions">
+                <button type="submit" class="ca-apply">Apply</button>
+                <a href="@baseUrl" class="ca-reset">Reset</a>
+            </div>
+        </form>
+
+        <p class="ca-summary">
+            <strong>@result.TotalCount</strong> @(result.TotalCount == 1 ? "alert" : "alerts")
+            @foreach (var s in result.SeverityCounts)
+            {
+                <a class="ca-chip @CloudAlertDisplay.SeverityClass(s.Severity)" href="@PageUrl(filter with { Severity = s.Severity, Page = 1 })">
+                    <span class="ca-dot"></span>@s.Count @s.Severity
+                </a>
+            }
+        </p>
+
+        @if (result.Items.Count == 0)
+        {
+            <p class="ca-empty">@(alerts.Count == 0 ? "No alerts received yet." : "No alerts match these filters.")</p>
+        }
+        else
+        {
+            <ol class="ca-list">
+                @foreach (var a in result.Items)
+                {
+                    var projectLink = CloudAlertDisplay.SafeHttpUrl(a.ProjectUrl);
+                    <li class="ca-card @CloudAlertDisplay.SeverityClass(a.Severity)">
+                        <div class="ca-card-head">
+                            <span class="ca-badge">@(a.Severity.Length > 0 ? a.Severity.ToUpperInvariant() : "N/A")</span>
+                            <span class="ca-alert">@a.AlertName</span>
+                            @if (projectLink is not null)
+                            {
+                                <a class="ca-project" href="@projectLink" rel="noopener noreferrer" target="_blank">@a.ProjectAlias ↗</a>
+                            }
+                            else
+                            {
+                                <span class="ca-project">@a.ProjectAlias</span>
+                            }
+                            @if (a.EnvironmentName.Length > 0) { <span class="ca-pill">@a.EnvironmentName</span> }
+                            @if (a.IsTest) { <span class="ca-pill ca-test">TEST</span> }
+                        </div>
+                        <p class="ca-details">@a.Details</p>
+                        <div class="ca-card-foot">
+                            <span>
+                                <time datetime="@a.TimeFiredUtc.ToString("O", CultureInfo.InvariantCulture)" data-local>@a.TimeFiredUtc.ToString("dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture) UTC</time>
+                                <span class="ca-rel" data-rel></span>
+                            </span>
+                            <details class="ca-meta">
+                                <summary>metadata</summary>
+                                @if (a.CustomerMetadata.Length > 0)
+                                {
+                                    <h3>Customer metadata</h3>
+                                    <pre>@CloudAlertDisplay.PrettyJson(a.CustomerMetadata)</pre>
+                                }
+                                <h3>Raw payload</h3>
+                                <pre>@CloudAlertDisplay.PrettyJson(a.RawPayload)</pre>
+                            </details>
+                        </div>
+                    </li>
+                }
+            </ol>
+
+            @if (result.TotalPages > 1)
+            {
+                <nav class="ca-pager" aria-label="Pages">
+                    @if (result.Page > 1) { <a href="@PageUrl(filter with { Page = result.Page - 1 })">‹ Prev</a> } else { <span></span> }
+                    <span>Page @result.Page of @result.TotalPages</span>
+                    @if (result.Page < result.TotalPages) { <a href="@PageUrl(filter with { Page = result.Page + 1 })">Next ›</a> } else { <span></span> }
+                </nav>
+            }
+        }
+    </main>
+
+    <script src="/cloudalerts/cloudalerts.js"></script>
+</body>
+</html>

@@ -9,6 +9,7 @@ This is an Umbraco Cloud CMS project built with .NET 10.0. The solution consists
 - **Mikkelhm.Web** - Main web application with Umbraco CMS integration
 - **Mikkelhm.Core** - Core library containing components, composers, and frontend helpers
 - **Mikkelhm.Models** - ModelsBuilder-generated strongly typed content models (`*.generated.cs`). Umbraco regenerates them on boot and when doc types change, so commit them together with the matching `.uda` changes
+- **tests/Mikkelhm.Core.Tests** - xUnit + NSubstitute tests for Core (run `dotnet test src/Mikkelhm.sln`). `tests/Mikkelhm.Web.Scripts` holds `node --test` tests for frontend scripts (run `node --test tests/Mikkelhm.Web.Scripts`)
 
 The project uses Umbraco CMS v18.2.0 with Umbraco Cloud v18.0.3, Deploy v18.1.1, and Forms v18.1.3 packages for content management and deployment.
 
@@ -70,6 +71,7 @@ The solution has three projects with a clear separation of concerns:
 - `wwwroot/asta/` - Asta theme with SCSS assets
 - `wwwroot/blog/` - Blog theme assets
 - `wwwroot/ellabm/` - Ellabm party photo subsite (upload + gallery slideshow)
+- `wwwroot/cloudalerts/` - Cloud Alerts listing page styles and script
 - `wwwroot/media/` - Media storage
 - `App_Plugins/AstaPhotoGalleryListView/` - Custom photo gallery list view plugin
 - `App_Plugins/UmbracoId/` - UmbracoId authentication plugin
@@ -90,16 +92,18 @@ The solution has three projects with a clear separation of concerns:
 
 ## Site Structure
 
-Three independent subsites, each a root `Website` node (Generic doc type, no template) with its own home page. No hostnames are bound, so the root URL `/` returns 404 locally and on Cloud (known, accepted).
+Four independent subsites, each a root `Website` node (Generic doc type, no template) with its own home page. No hostnames are bound, so the root URL `/` returns 404 locally and on Cloud (known, accepted).
 
 | Subsite | Tree | Document types | Templates | URL |
 |---------|------|----------------|-----------|-----|
 | Blog | Blog → Home → Archive → 81 posts | `blogHome`, `blogPostRepository` (collection), `blogPost` | `BlogMaster` (layout) → `BlogHome`, `BlogPost` | `/home/`, `/home/archive/<post>/` |
 | Asta | Asta → Home → Photos → 7 photos | `astaHome`, `astaPhotoGallery` (collection), `astaPhoto` | `AstaHome` only | Not routable locally: its Home collides with Blog's `/home/` |
 | Ellabm | Ellabm → Ellas Fest → Galleri, Admin | `ellabmHome`, `ellabmGallery`, `ellabmAdmin` | `EllabmHome`, `EllabmGallery`, `EllabmAdmin` | `/ellas-fest/`, `/ellas-fest/galleri/`, `/ellas-fest/admin/` |
+| Cloud Alerts | CloudAlertsSite → Cloud Alerts → alert items | `cloudAlertsHome` (collection), `cloudAlert` | `CloudAlertsHome` | `/cloud-alerts/` (filters via query string) |
 
 - **Shared**: `website` (root node) and `sEOSection` (element type used as a composition by the Blog doc types), both in the `Generic` doc type folder.
 - **Ellabm API**: `src/Mikkelhm.Web/Controllers/EllabmApiController.cs` at `umbraco/api/ellabm`: `POST upload`, `GET photos`, `DELETE photos/{id}`. It backs the photo upload, slideshow and admin pages.
+- **Cloud Alerts webhook**: `POST /umbraco/api/cloud-alerts/webhook` (`CloudAlertsWebhookController`), header `uc-webhook-auth` checked against config `CloudAlerts:WebhookSecret` (user-secrets locally, env var `CloudAlerts__WebhookSecret` on Cloud). Each alert becomes a published `cloudAlert` under the `Cloud Alerts` home. Logic lives in `src/Mikkelhm.Core/CloudAlerts/`. The root node is named `CloudAlertsSite` because a root and home with the same name collide on URL.
 - The schema lives in `.uda` files in `src/Mikkelhm.Web/umbraco/Deploy/Revision/`. Use the Umbraco MCP for content and publish state.
 
 ## Umbraco MCP Workflow Tips

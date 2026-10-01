@@ -1,0 +1,51 @@
+{
+  "Name": "Cloud Alerts Home",
+  "Alias": "cloudAlertsHome",
+  "DefaultTemplate": "umb://template/4e37122c625f4ae49e52e4fcb8857000",
+  "AllowedTemplates": [
+    "umb://template/4e37122c625f4ae49e52e4fcb8857000"
+  ],
+  "HistoryCleanup": {},
+  "Icon": "icon-alert-alt",
+  "Thumbnail": "folder.png",
+  "Description": "Cloud Alerts listing page and container for alert items",
+  "Permissions": {
+    "AllowedInLibrary": true,
+    "AllowedChildContentTypes": [
+      "umb://document-type/b44ee2adfe364c00961912e33b4bd785"
+    ]
+  },
+  "ListView": "e1420d36-3612-481b-81d2-2ee229eb6cf9",
+  "Parent": "umb://document-type-container/a4e82ba9214d4f1988dbe9b10b3d6980",
+  "CompositionContentTypes": [
+    "umb://document-type/8139143477a34379a84310f0ce4685ea"
+  ],
+  "PropertyGroups": [],
+  "PropertyTypes": [],
+  "Udi": "umb://document-type/9a8d34f9933c419d80d5334654a68a9d",
+  "Dependencies": [
+    {
+      "Udi": "umb://data-type/e1420d363612481b81d22ee229eb6cf9",
+      "Mode": "Exist"
+    },
+    {
+      "Udi": "umb://document-type-container/a4e82ba9214d4f1988dbe9b10b3d6980",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://document-type/8139143477a34379a84310f0ce4685ea",
+      "Ordering": true
+    },
+    {
+      "Udi": "umb://document-type/b44ee2adfe364c00961912e33b4bd785",
+      "Mode": "Exist"
+    },
+    {
+      "Udi": "umb://template/4e37122c625f4ae49e52e4fcb8857000",
+      "Ordering": true,
+      "Mode": "Exist"
+    }
+  ],
+  "__type": "Umbraco.Deploy.Infrastructure,Umbraco.Deploy.Infrastructure.Artifacts.ContentType.DocumentTypeArtifact",
+  "__version": "18.1.1"
+}
