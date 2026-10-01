@@ -122,19 +122,11 @@
             <ol class="ca-list">
                 @foreach (var a in result.Items)
                 {
-                    var projectLink = CloudAlertDisplay.SafeHttpUrl(a.ProjectUrl);
                     <li class="ca-card @CloudAlertDisplay.SeverityClass(a.Severity)">
                         <div class="ca-card-head">
                             <span class="ca-badge">@(a.Severity.Length > 0 ? a.Severity.ToUpperInvariant() : "N/A")</span>
                             <span class="ca-alert">@a.AlertName</span>
-                            @if (projectLink is not null)
-                            {
-                                <a class="ca-project" href="@projectLink" rel="noopener noreferrer" target="_blank">@a.ProjectAlias ↗</a>
-                            }
-                            else
-                            {
-                                <span class="ca-project">@a.ProjectAlias</span>
-                            }
+                            <span class="ca-project">@a.ProjectAlias</span>
                             @if (a.EnvironmentName.Length > 0) { <span class="ca-pill">@a.EnvironmentName</span> }
                             @if (a.IsTest) { <span class="ca-pill ca-test">TEST</span> }
                         </div>
@@ -144,16 +136,6 @@
                                 <time datetime="@a.TimeFiredUtc.ToString("O", CultureInfo.InvariantCulture)" data-local>@a.TimeFiredUtc.ToString("dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture) UTC</time>
                                 <span class="ca-rel" data-rel></span>
                             </span>
-                            <details class="ca-meta">
-                                <summary>metadata</summary>
-                                @if (a.CustomerMetadata.Length > 0)
-                                {
-                                    <h3>Customer metadata</h3>
-                                    <pre>@CloudAlertDisplay.PrettyJson(a.CustomerMetadata)</pre>
-                                }
-                                <h3>Raw payload</h3>
-                                <pre>@CloudAlertDisplay.PrettyJson(a.RawPayload)</pre>
-                            </details>
                         </div>
                     </li>
                 }
